@@ -1,0 +1,583 @@
+<title>Normal Distributions</title>
+<hr/>
+Enter your name: <answer type="text" handGraded></answer>
+<hr/>
+
+<!-- INTRODUTION -->
+
+<p>
+  In the last section, we learned how to calculate probabilities based on standard normal distributions for any <m>z</m>-score. We also learned how to calculate these probablities as area under the curve in the left-tail of the distribution, the right-tail of the distribution, or between two <m>z</m>-scores.
+</p>
+<p>
+  In this lesson, we will learn how to compute normal distribution probabilities for bell-shaped data that has any mean or standard devation.
+</p>
+
+<!-- Z-SCORES -->
+
+<section>
+  <title><m>Z</m>-Scores</title>
+
+<p>
+  A <alert><m>z</m>-score</alert> is a value that measures how far away a data item within a data set is from the mean, measured in standard deviations. The formula for calculating the <m>z</m>-score of a data item <m>x</m> is:
+  <me>z=\frac{x-\mu}{\sigma}</me>
+Where <m>\mu</m> is the mean of a data set, and <m>\sigma</m> is the standard deviation. A sample mean and sample standard deviation may be used in place of the population values.
+</p>
+
+<!-- Example: Find a z-score -->
+  
+<example>
+  <title>Example 1</title>
+<p>
+  Suppose a data set has a mean of <m>12.4</m> and a standard deviation of <m>2.3</m>. Calculate a <m>z</m>-score for the value <m>x=17.6</m>. Round your answer to two decimal places. 
+</p>
+  <answer>
+    <mathInput name="ex1ans">
+      <label><m>z=</m></label>
+    </mathInput>
+    <award><when>$ex1ans = 2.26</when></award>
+  </answer>
+</example>
+
+<p>
+  You can tell if a value is larger or smaller than the mean by checking if its <m>z</m>-score is positive or negative. This is because the standard deviation of a data set is always a postive value, so whether a <m>z</m>-score is positive or negative is dependent entirely on the value of: <m>x-\mu</m>. Therefore, if:
+  <ol>
+    <li><m>z > 0</m>, then the value <m>x</m> is larger than the mean</li>
+    <li><m>z < 0</m>, then the value <m>x</m> is smaller than the mean</li>
+    <li><m>z = 0</m>, then the value <m>x</m> is equal to the mean</li>
+  </ol>
+</p>
+
+<!-- Example: Interpret sign of z-score -->
+  
+<example>
+  <title>Example 2</title>
+  <p>
+    A data value within a data set has a <m>z</m>-score of <m>z=-1.35</m>. Is the value:
+    <answer>
+      <choiceInput>
+        <choice>Larger than the mean</choice>
+        <choice credit="1">Smaller than the mean</choice>
+        <choice>It is impossible to tell</choice>
+      </choiceInput>
+    </answer>
+  </p>
+</example>
+
+<p>
+  The importance of <m>z</m>-scores becomes apparent when we realize that they have the ability to convert a data set into a new data set that has a mean of zero, and standard deviation of one, all while preserving the shape of the original distribution. Let's explore this through an example.
+</p>
+
+<p>
+In the spreadsheet below, a data set is provided in column A that has 10 data values. Compute the mean and standard deviaion of these values and enter those answers in the boxes after the spreadsheet.
+</p>
+
+<spreadsheet name="sheet1" minNumRows="10" minNumColumns="2">
+  <cell rowNum="1" colNum="1">8</cell> 
+  <cell rowNum="2" colNum="1">10</cell> 
+  <cell rowNum="3" colNum="1">6</cell> 
+  <cell rowNum="4" colNum="1">12</cell>
+  <cell rowNum="5" colNum="1">11</cell>
+  <cell rowNum="6" colNum="1">10</cell>
+  <cell rowNum="7" colNum="1">9</cell>
+  <cell rowNum="8" colNum="1">11</cell>
+  <cell rowNum="9" colNum="1">9</cell>
+  <cell rowNum="10" colNum="1">10</cell>
+  
+  <cell rowNum="2" colNum="2">0.234</cell>
+  <cell rowNum="3" colNum="2">-2.102</cell>
+  <cell rowNum="4" colNum="2">1.401</cell>
+  <cell rowNum="5" colNum="2">0.817</cell>
+  <cell rowNum="6" colNum="2">0.234</cell>
+  <cell rowNum="7" colNum="2">-0.350</cell>
+  <cell rowNum="8" colNum="2">0.817</cell>
+  <cell rowNum="9" colNum="2">-0.350</cell>
+  <cell rowNum="10" colNum="2">0.234</cell>
+</spreadsheet>
+
+<p>
+  First, enter the mean and standard deviation of the data set in column A below. You may assume the data represents a sample, and round to three decimal places when necessary.
+</p>
+<answer>
+  <mathInput name="ex3mean">
+    <label>Mean (column A) = </label>
+  </mathInput>
+  <award><when>$ex3mean = 9.6</when></award>
+  <award credit="0.5" name="ex3mrnd"><when>$ex3mean = 10 or $ex3mean = 9</when></award>
+</answer>
+<feedback condition="$ex3mrnd">Your answer is very close, but you might not be rounding correctly</feedback>
+
+<br/>
+
+<answer>
+  <mathInput name="ex3std">
+    <label>Standard Deviation (column A) = </label>
+  </mathInput>
+  <award><when>round($ex3std,3) = 1.713</when></award>
+  <award credit="0.5" name="ex3srnd"><when>round($ex3std,3) = 1.712</when></award>
+  <award credit="0.5" name="ex3spop"><when>round($ex3std,2) = 1.62</when></award>
+</answer>
+<feedback condition="$ex3srnd">Your answer is very close, but you might not be rounding correctly</feedback>
+<feedback condition="$ex3spop">You are on the right track, but you could be mistaking the population standard deviation for the sample standard deviation.</feedback>
+
+<p>
+  Next, calculate the <m>z</m>-score for the missing value in column B and enter that answer there. I have calculated the <m>z</m>-scores for the other data items for you. 
+</p>
+
+<answer>
+  <award><when>$sheet1.cellB1 = -0.934</when></award>
+</answer>
+
+<!-- Example: Mean and Standard Deviation of Z-scores -->
+  
+<p>
+  Now, calculate the mean and standard deviation of the <m>z</m>-scores we see in column B, and enter those values in the boxes below:
+</p>
+<answer>
+  <mathInput name="ex2mean">
+    <label>Mean (column B) = </label>
+  </mathInput>
+  <award><when>round($ex2mean,3) = 0</when></award>
+</answer>
+
+<br/>
+
+<answer>
+  <mathInput name="ex2std">
+    <label>Standard Deviation (column B) = </label>
+  </mathInput>
+  <award><when>round($ex2std,3) = 1</when></award>
+</answer>
+
+<!-- Dot Plot of z-scores vs x-values -->
+
+<p>
+  Finally, let's look at a dot-plot for each of the data sets to verify that the shape of the distribution has not changed. Here is a dot plot for the original data:
+</p>
+
+<chart name="auto" type="scatter">
+  <shortDescription>An axis chosen from the data</shortDescription>
+  <series x="6 8 9 9 10 10 10 11 11 12">1 1 1 2 1 2 3 1 2 1</series>
+</chart>
+
+<p>
+  Here is the plot of the <m>z</m>-scores:
+</p>
+
+<chart name="auto" type="scatter">
+  <shortDescription>An axis chosen from the data</shortDescription>
+  <series x="-0.93 0.23 -2.1 1.4 0.82 0.23 -0.35 0.82 -0.35 0.23">1 1 1 1 1 2 1 2 2 3</series>
+</chart>
+
+<!-- Example: Properties of z-scores of data sets -->
+  
+<example>
+  <p>
+    These examples illustrate which of the following properties about <m>z</m>-scores?
+  </p>
+  <answer>
+    <choiceInput shuffleOrder selectMultiple matchPartial> 
+      <choice credit="1"><m>z</m>-scores preserve the shape of the distribution of the data set</choice>
+      <choice credit="1">The mean of the <m>z</m>-scores for a set of data is equal to zero</choice>
+      <choice credit="1">The standard deviation of the <m>z</m>-scores for a set of data is equal to one</choice>
+      <choice><m>z</m>-scores are never negative</choice>
+      <choice>The sum of the <m>z</m>-scores for a set of data is equal to one</choice>
+    </choiceInput>
+  </answer>
+</example>
+
+</section>
+
+<!-- CALCULATING NORMAL PROBABILITIES -->
+
+<section>
+  <title>Calculating Normal Distribution Probabilities</title>
+
+<p>
+  <m>Z</m>-scores are important because they give us a way to work with any normal distribution using the standard normal distribution.
+</p>
+  
+<p>
+  The standard normal distribution is a bell-shaped distribution with a mean of zero and a standard deviation of one. <m>Z</m>-scores allow us to transform values from any normal distribution into values on this standard scale, while keeping the same relative position within the distribution. This means that we can use the standard normal distribution to find probabilities for any normal distribution.
+</p>
+
+<p>
+  The good news is that we don’t need to convert an entire data set into <m>z</m>-scores. We only need to convert the values that are important for solving the problem.
+</p>
+
+<p>
+  Watch the following video animation (no audio) to see how a normal distribution with any mean and standard deviation can be transformed into the standard normal distribution. Notice that the area to the left of a particular <m>x</m>-value stays the same when we convert that value to its corresponding <m>z</m>-score.
+</p>
+  
+<video youtube="i5VjkYXwPig" name="normalvid">
+  <shortDescription>a video animation demonstrating that the cumulative area to the left of an x value is the same cumulative area to the left of its associated z score</shortDescription>
+</video>
+<answer hide name="v1Credit">
+  <award credit="$normalvid.fractionWatched">
+    <when>true</when>
+  </award>
+</answer>
+ 
+<callAction triggerWith="$normalvid" target="$v1Credit" actionName="submitAnswer" />
+</section>
+
+<section>
+  <title>Use of Technology</title>
+  <p>
+    It is common for many types of technology to calculate <m>z</m>-scores for you during the process of finding normal distribution probabilities. This is convenient, and can even help eleviate rounding errors, but you should understand how to use <m>z</m>-scores first before taking advantage of these conveniences.
+  </p>
+  <p>
+    See the videos below to learn how to calculate normal distribution probabilites based on your chosen technology.
+  </p>
+
+  <!-- INSERT BOOT CAMP VIDEOS FOR NORMAL DISTRIBUTIONS -->
+
+  You can use the following videos to learn how to calculate normal distribution probabilities using your chosen technology:
+
+<definition boxed collapsible startOpen="false">
+  <title>TI-83 Instructions</title>
+  <video youtube="-4N-NyRWXuc">
+    <shortDescription>Instructions on how to calculate normal distribution probabilites using the TI-83 Calculator</shortDescription>
+  </video>
+</definition>
+
+<definition boxed collapsible startOpen="false">
+  <title>TI-84 Instructions</title>
+  <video youtube="MxZ8x6Ka3l8">
+    <shortDescription>Instructions on how to calculate normal distribution probabilites using the TI-84 Calculator</shortDescription>
+  </video>
+</definition>
+
+<definition boxed collapsible startOpen="false">
+  <title>Online Stats Calculator Instructions</title>
+  <video youtube="7s0Jx1l_tZs">
+    <shortDescription>Instructions on how to calculate normal distribution probabilites using the online Stats Calculator</shortDescription>
+  </video>
+</definition>
+  
+</section>
+
+<!-- Problems: Calculating Normal Probabilities -->
+
+<problems>
+  <title>Example Problems</title>
+  <!-- Problem 1: Exam Times (left-tailed) -->
+
+    <!-- Parts -->
+      <!-- Select left/right/between and "shade" appropriate area -->
+      <!-- find the z-score for values in question -->
+      <!-- shade new area for standard normal? -->
+      <!-- calculate probability based on z-score -->
+  
+  <problem boxed collapsible startOpen="false">
+    <title>Exam Times</title>
+    <p>
+      The length of time it takes a student to complete a particular math exam is normally distributed with a mean of 40 minutes and a standard deviation of 5.2 minutes. If a class period has 50 minutes for the exam, what is the probability that a student selected at random will have time to complete it, and finish in less than 50 minutes? 
+    </p>
+
+    <cascade>
+
+      <p>Is this a left-tail, right-tail, or between style probability?</p>
+      <answer>
+        <choiceInput>
+          <choice credit="1">Left-tail: <m>P(X < a)</m></choice>
+          <choice name="ex1rtwrong">Right-tail: <m>P(X > a)</m></choice>
+          <choice name="ex1btwrong">Between: <m>P(a < X < b)</m></choice>
+        </choiceInput>
+      </answer>
+
+
+      <p>What is the probability we wish to calculate?</p>
+
+      <m>
+        P(X < <mathInput name="ex1lb" forAnswer="$ex1value" /> )  
+      </m>
+
+      <answer name="ex1value">
+        <award><when>$ex1lb = 50</when></award>
+      </answer>
+
+      <p>
+        Shade the bell curve, according to the probability you wish to determine.
+      </p>
+
+      <graph xMin="20" xMax="60" yMin="-0.03" yMax="0.1" fixAxes>
+        <shortDescription>A graph that the student can interact with in order to shade the area under the normal distribution curve</shortDescription>
+        <function name="f">
+          1/(5.2*sqrt(2pi))*e^(-0.5*((x-40)/5.2)^2)
+        </function>
+
+        <lineSegment name="xaxis" endpoints="(20, 0) (60, 0)" hide="true"/>
+        <point name="P" coords="(40,0)">
+          <constrainTo>$xaxis</constrainTo>
+        </point>
+        
+        <regionBetweenCurveXAxis 
+          function="$f" 
+          boundaryValues="20 $P.x"
+        /> 
+
+      </graph>
+
+      <answer>
+        <award><when>abs($P.x - 50) < 1</when></award>
+      </answer>
+
+      <answer>
+        <choiceInput shuffleOrder>
+          <label>Without calculating this probability, will the value be:</label>
+          <choice credit="1">Larger than 50%</choice>
+          <choice name="ex1lt50err">Smaller than 50%</choice>
+          <choice name="ex1eq50err">Equal to 50%</choice>
+          <choice name="ex1nopredict">It is unable to predict</choice>
+        </choiceInput>
+      </answer>
+
+      <p>
+        What is the <m>z</m>-score that is associated with the value <m>x = $ex1value</m>? <br/> Round your answer to three decimal places.
+      </p>
+
+      <m>z= <mathInput name="ex1z" forAnswer="$ex1zans"/></m>
+      <answer name="ex1zans">
+        <award><when>round($ex1z, 3) = 1.923</when></award>
+      </answer>
+
+      <p>
+        What is the value of this probability? <br/> Round to three decimal places.
+      </p>
+
+      <m>P( X < $ex1value) = <mathInput name="ex1prob" forAnswer="$ex1probans" /></m>
+      <answer name="ex1probans">
+        <award><when>round($ex1prob, 3) = 0.973</when></award>
+      </answer>
+    </cascade>
+
+    <feedback condition="$ex1rtwrong">If the student finishes the exam in more than 50 minutes, then the class period will be over, so this can't be a right-tail probability.
+    </feedback>
+    <feedback condition="$ex1btwrong">You could solve this problem by calculating the probability that a student finishes between 0 and 50 minutes, but imposing a boundary that doesn't already exist in the problem (the lower bound of zero minutes) can lead you to incorrect values sometimes in Statistics. It is better to avoid this practice.
+    </feedback>
+    <feedback condition="$ex1lt50err">
+      Your shaded region crosses the mean, so the total area can't be less than 50%.
+    </feedback>
+    <feedback condition="$ex1eq50err">
+      Your shaded region would have to start at the mean for the area under the curve to be exactly 50%.
+    </feedback>
+    <feedback condition="$ex1nopredict">
+      It is possible to predict whether a right or left tailed probability is greater than or less than 50% by observing if the shaded area includes the mean.
+    </feedback>
+  </problem>
+
+  <!-- Problem 2: Bags of Flour (right-tailed) -->
+  
+  <problem boxed collapsible startOpen="false">
+    <title>Bags of Flour</title>
+    <p>
+      A particular brand of flour manufacturer fills its five pound bags in such a way that they are normally distributed with a mean of 5 pounds, with a standard deviation of 0.125 pounds. What is the probability that a bag selected at random has more than 5.3 pounds?
+    </p>
+
+    <cascade>
+
+      <p>Is this a left-tail, right-tail, or between style probability?</p>
+      <answer>
+        <choiceInput>
+          <choice name="ex2ltwrong">Left-tail: <m>P(X < a)</m></choice>
+          <choice credit="1">Right-tail: <m>P(X > a)</m></choice>
+          <choice name="ex2btwrong">Between: <m>P(a < X < b)</m></choice>
+        </choiceInput>
+      </answer>
+
+
+      <p>What is the probability we wish to calculate?</p>
+
+      <m>
+        P(X > <mathInput name="ex2lb" forAnswer="$ex2value" /> )  
+      </m>
+
+      <answer name="ex2value">
+        <award><when>$ex2lb = 5.3</when></award>
+      </answer>
+
+      <p>
+        Shade the bell curve, according to the probability you wish to determine.
+      </p>
+
+      <graph xMin="4.5" xMax="5.5" yMin="-1" yMax="4" fixAxes>
+        <shortDescription>A graph that the student can interact with in order to shade the area under the normal distribution curve</shortDescription>
+        <function name="f">
+          1/(0.125*sqrt(2pi))*e^(-0.5*((x-5)/0.125)^2)
+        </function>
+
+        <lineSegment name="xaxis" endpoints="(4.5, 0) (5.5, 0)" hide="true"/>
+        <point name="P" coords="(5,0)">
+          <constrainTo>$xaxis</constrainTo>
+        </point>
+        
+        <regionBetweenCurveXAxis 
+          function="$f" 
+          boundaryValues="$P.x 5.5"
+        /> 
+
+      </graph>
+
+      <answer>
+        <award><when>abs($P.x - 5.3) < 0.1</when></award>
+      </answer>
+
+      <answer>
+        <choiceInput shuffleOrder>
+          <label>Without calculating this probability, will the value be:</label>
+          <choice name="ex2gt50err">Larger than 50%</choice>
+          <choice credit="1">Smaller than 50%</choice>
+          <choice name="ex2eq50err">Equal to 50%</choice>
+          <choice name="ex2nopredict">It is unable to predict</choice>
+        </choiceInput>
+      </answer>
+
+      <p>
+        What is the <m>z</m>-score that is associated with the value <m>x = $ex2value</m>? <br/> Round your answer to three decimal places.
+      </p>
+
+      <m>z= <mathInput name="ex2z" forAnswer="$ex2zans"/></m>
+      <answer name="ex2zans">
+        <award><when>round($ex2z, 3) = 2.4</when></award>
+      </answer>
+
+      <p>
+        What is the value of this probability? <br/> Round to three decimal places.
+      </p>
+
+      <m>P( X < $ex2value) = <mathInput name="ex2prob" forAnswer="$ex2probans" /></m>
+      <answer name="ex2probans">
+        <award><when>round($ex2prob, 3) = 0.008</when></award>
+      </answer>
+    </cascade>
+
+    <feedback condition="$ex2ltwrong">The bag needs to be filled with more than 5.3 pounds. If this were a left-tailed probability, we would want bags that are less than 5.3 pounds.
+    </feedback>
+    <feedback condition="$ex2btwrong">We want the probability that a bag is filled with more than 5.3 pounds, which only includes a single value. We would need two values to calculate the area between them.
+    </feedback>
+    <feedback condition="$ex2gt50err">
+      Your shaded region does not cross the mean, so the total area can't be more than 50%.
+    </feedback>
+    <feedback condition="$ex2eq50err">
+      Your shaded region would have to start at the mean for the area under the curve to be exactly 50%.
+    </feedback>
+    <feedback condition="$ex2nopredict">
+      It is possible to predict whether a right or left tailed probability is greater than or less than 50% by observing if the shaded area includes the mean.
+    </feedback>
+  </problem>
+
+  <!-- Problem 3: Hockey Pucks (between) -->
+  
+  <problem boxed collapsible startOpen="false">
+    <title>Hockey Pucks</title>
+    <p>
+      A regulation hockey puck must weigh between 156 grams and 170 grams. A company that manufactures hockey pucks produces them in such a way that they are normally distributed with a mean of 167 grams with a standard deviation of 5.6 grams. What is the probability that a hockey puck selected at random that is produced by this company will qualify for regulation weight?
+    </p>
+
+    <cascade>
+
+      <p>Is this a left-tail, right-tail, or between style probability?</p>
+      <answer>
+        <choiceInput>
+          <choice name="ex3ltwrong">Left-tail: <m>P(X < a)</m></choice>
+          <choice name="ex3rtwrong">Right-tail: <m>P(X > a)</m></choice>
+          <choice credit="1">Between: <m>P(a < X < b)</m></choice>
+        </choiceInput>
+      </answer>
+
+
+      <p>What is the probability we wish to calculate?</p>
+
+      <m>
+        P(<mathInput name="ex3lb" forAnswer="$ex3values" /> > X > <mathInput name="ex3ub" forAnswer="$ex3values" /> )  
+      </m>
+
+      <answer name="ex3values">
+        <award><when>$ex3lb = 156 and $ex3ub = 170</when></award>
+      </answer>
+
+      <p>
+        Shade the bell curve, according to the probability you wish to determine. Please note that point <m>A</m>, must be smaller than point <m>B</m>.
+      </p>
+
+      <graph xMin="145" xMax="185" yMin="-0.02" yMax=".15" fixAxes>
+        <shortDescription>A graph that the student can interact with in order to shade the area under the normal distribution curve</shortDescription>
+        <function name="f">
+          1/(3.5*sqrt(2pi))*e^(-0.5*((x-165)/3.5)^2)
+        </function>
+
+        <lineSegment name="xaxis" endpoints="(145, 0) (185, 0)" hide="true"/>
+        <point name="A" coords="(160,0)" labelIsName>
+          <constrainTo>$xaxis</constrainTo>
+        </point>
+        <point name="B" coords="(175,0)" labelIsName>
+          <constrainTo>$xaxis</constrainTo>
+        </point>
+        
+        <regionBetweenCurveXAxis 
+          function="$f" 
+          boundaryValues="$A.x $B.x"
+        /> 
+
+      </graph>
+
+      <answer>
+        <award><when>abs($A.x - 156) < 1 and abs($B.x - 170) < 1</when></award>
+      </answer>
+
+      <answer>
+        <choiceInput shuffleOrder>
+          <label>Without calculating this probability, will the value be:</label>
+          <choice name="ex3gt50err">Larger than 50%</choice>
+          <choice name="ex3lt50err">Smaller than 50%</choice>
+          <choice name="ex3eq50err">Equal to 50%</choice>
+          <choice credit="1">It is unable to predict</choice>
+        </choiceInput>
+      </answer>
+
+      <p>
+        What is the <m>z</m>-score associated with the value <m>x = $ex3lb</m>? <br/> Round your answer to three decimal places.
+      </p>
+
+      <m>z= <mathInput name="ex3z1" forAnswer="$ex3z1ans"/></m>
+      <answer name="ex3z1ans">
+        <award><when>round($ex3z1, 3) = -1.964</when></award>
+      </answer>
+
+      <p>
+        What is the <m>z</m>-score associated with the value <m>x = $ex3ub</m>? <br/> Round your answer to three decimal places.
+      </p>
+
+      <m>z= <mathInput name="ex3z2" forAnswer="$ex3z2ans"/></m>
+      <answer name="ex3z2ans">
+        <award><when>round($ex3z2, 3) = 0.536</when></award>
+        <award credit="0.5" name="ex3z2rnd"><when>round($ex3z2, 3) = 0.535</when></award>
+      </answer>
+      
+      <p>
+        What is the value of this probability? <br/> Round to three decimal places.
+      </p>
+
+      <m>P( $ex3lb < X < $ex3up ) = <mathInput name="ex3prob" forAnswer="$ex3probans" /></m>
+      <answer name="ex3probans">
+        <award><when>round($ex3prob, 3) = 0.679</when></award>
+      </answer>
+    </cascade>
+
+    <feedback condition="$ex3ltwrong">Since the hocky pucks have both an minimum and maximum value we are interested in, this would not be only a left-tail probability.
+    </feedback>
+    <feedback condition="$ex3rtwrong">Since the hocky pucks have both an minimum and maximum value we are interested in, this would not be only a right-tail probability.
+    </feedback>
+    <feedback condition="$ex3gt50err">
+      It is difficult to predict if a probability should be more than 50% or less than 50% based on a sketch.
+    </feedback>
+    <feedback condition="$ex3eq50err">
+      Your shaded region would have to calculate a left or right-tail probability, starting at the mean to be exactly 50%.
+    </feedback>
+    <feedback condition="$ex3z2rnd">
+      Your answer is close, but you might not be rounding your answer properly.
+    </feedback>
+    
+  </problem>
+  
+</problems>
