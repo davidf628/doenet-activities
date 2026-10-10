@@ -1,0 +1,927 @@
+
+<!-- SETUP FUNCTION -->
+
+<setup>
+  <function name="normalpdf" variables="x mu sigma">
+    1/(sigma*sqrt(2pi))*e^(-0.5*((x-mu)/sigma)^2)
+  </function>
+  <function name="normalcdf" variables="x">
+    0.5 * (1 + erf(x/sqrt(2)))
+  </function>
+  <math name="probtol">0.001</math>
+  <boolean name="meanproblemsdone">$meanproblems.numCompleted = 3</boolean>
+  <boolean name="stdevproblemsdone">$stdevproblems.numCompleted = 3</boolean>
+  <boolean name="leftproblemsdone">$leftproblems.numCompleted = 2</boolean>
+  <boolean name="rightexampledone">$rightexample.numCompleted = 3</boolean>
+  <boolean name="rightproblemsdone">$rightproblems.numCompleted = 2</boolean>
+  <boolean name="betweenexampledone">$betweenexample.numCompleted = 3</boolean>
+</setup>
+
+<!-- INTRODUCTION -->
+
+<title>Standard Normal Distributions</title>
+
+<hr/>
+<p>
+  Before beginning, please enter your name here, otherwise I won't know who you are based on the default assigned name. Alternatively, you can opt to create an account but this isn't necessary.
+</p>
+
+<p>
+  <answer type="text" handGraded>
+    <label>Name: </label>
+  </answer>
+</p>
+
+<hr/>
+
+<p>
+The standard normal distribution is the name that is given to the familiar bell-shaped curve in statistics. It is an example of a <alert>continuous distribution</alert>, meaning that it is defined based on a function, and you can calculate a probability at any point within the domain of that function.
+</p>
+
+<p>
+It is generally not necessary for you to know this, but the function that draws the shape of a standard normal distribution is:
+  <me>f(x)=\frac{1}{\sqrt{2\pi}}e^{-x^{2}/2}</me>
+</p>
+
+<p>
+If you have a graphing calculator nearby, or can access <ref to="https://www.desmos.com/calculator">Desmos</ref>, try graphing this function to convince yourself that it does in fact draw a bell curve.
+</p>
+
+Your graph should look something like this:
+
+<graph xMin="-4" xMax="4" yMin="-0.2" yMax="0.6" fixAxes>
+  <shortDescription>
+    A graph of the standard normal distribution, the familiar bell curve in statistics which has a mean of zero and a standard deviation of one
+  </shortDescription>
+
+  <function name="f">
+    $$normalpdf(x, 0, 1)
+  </function>
+
+</graph>
+
+The reason we call this a <alert>standard normal distribution</alert>, is because this is just one of many different bell curves we can have. Each of these curves is dependent upon a different mean, and standard deviation.
+
+<definition boxed>
+  <title>Standard Normal Distribution</title>
+  The <alert>standard normal distribution</alert> is a normal distribution that has a mean of zero, and a standard deviation of one.
+</definition>
+
+<!-- THE MEAN OF A NORMAL DISTRIBUTION -->
+
+<section>
+  <title>Locating the Mean of a Normal Distribution</title>
+
+  <p>
+  You can easily determine the location of the mean of a normal distribution by its graph because the highest point locates the mean. Take a look at the graph of the standard normal distibution above, and notice that the peak is located at zero, meaning that the mean of that distribution is zero.
+  </p>
+
+  <!-- Problem Set: Estimating Means -->
+
+    <!-- Problem 1: Estimating Means -->
+  <cascade name="meanproblems">
+    <title>Example Problems</title>
+  <problem boxed collapsible startOpen="false">
+    <title>Find the Mean of a Normal Distribution</title>
+    What is the mean of the standard normal distribution depicted below?
+  
+    <graph xMin="0" xMax="10" yMin="-0.2" yMax="0.6" displayYAxis="false" fixAxes>
+  
+      <shortDescription>
+        A graph of a non-standard normal distribution, where the user is asked to indicate the location of the mean of the distribution
+      </shortDescription>
+  
+      <function name="f">
+        $$normalpdf(x, 5, 1)
+      </function>
+  
+    </graph>
+
+    <answer>
+      <award>5</award>
+      <label>Mean = </label>
+    </answer>
+  
+  </problem>
+
+    <!-- Problem 2: Estimating Means -->
+    
+  <problem boxed collapsible startOpen="false">
+    <title>Comparing Means</title>
+      Which of the following normal distributions has a larger mean?
+      <graph xMin="20" xMax="30" yMin="-0.2" yMax="0.6" displayYAxis="false" fixAxes>
+        <shortDescription>
+          A graph of a non-standard normal distribution, where the user is asked to indicate the location of the mean of the distribution
+        </shortDescription>
+        <function name="f">
+          $$normalpdf(x, 23, 1)
+        </function>
+        <function name="g" styleNumber="2">
+          $$normalpdf(x, 26, 1)
+        </function>
+      </graph>
+
+      <answer>
+      <choiceInput shuffleOrder>
+        <label>Choose the curve that has the larger mean:</label>
+        <choice credit="1">Red curve</choice>
+        <choice>Blue curve</choice>
+      </choiceInput>
+    </answer>
+  
+  </problem>
+
+    <!-- Problem 3: Estimating Means -->
+    
+  <problem boxed collapsible startOpen="false"> 
+    <title>Create distribution with a specific mean</title>
+    Move the slider under you have created a normal distribution with a mean of 4:
+    <slider name="n" showValue="false" showTicks="false" step="0.1"></slider>
+    <graph xMin="0" xMax="10" yMin="-0.2" yMax="0.6" displayYAxis="false" fixAxes>
+      <shortDescription>
+        A graph of a normal distribution, where the user is asked to shift it left or right until it has a mean of a specified value
+      </shortDescription>
+
+      <function name="f">
+        $$normalpdf(x, $n, 1)
+      </function>
+      <lineSegment endpoints="($n,0.398) ($n,0)" styleNumber="6"></lineSegment>
+    </graph>
+
+    <answer name="exprob3">
+      <award><when>$n >= 3.8 and $n <= 4.2</when></award>
+    </answer>
+    
+  </problem>
+
+  </cascade>
+
+
+</section>
+
+<!-- THE STANDARD DEVIATION OF A NORMAL DISTRIBUTION -->
+
+<section>
+  <title>Estimating the Standard Deviation of a Normal Distribution</title>
+  <p>  
+  It is not as easy to determine the value of the standard deviation of a normal distribution by simply looking at the graph, but it can usually be estimated by judging where the peak of the curve stops looking like a downward facing parabola, and begins to look like an upward facing curve. In calculus, we learn the name of this point is called an inflection point, and on the normal distribution, there are two of these points. They are located a little higher than halfway between the peak of the curve and the horizontal axis.
+  </p>
+
+  <p>
+    The graph below highlights these points so you can get a visual idea of where these are located.
+  </p>
+
+  <graph xMin="-4" xMax="4" yMin="-0.2" yMax="0.6" displayYAxis="false" fixAxes>
+    <shortDescription>
+      A graph of a standard normal distribution, where the two inflection points on the curve are highlighted
+    </shortDescription>
+    <function name="f">
+      $$normalpdf(x, 0, $exstdev)
+    </function>
+    <point fixed name="L">($exstdev,0)
+      <constrainTo>$f</constrainTo>
+    </point>
+    <point fixed name="R">(-$exstdev,0)
+      <constrainTo>$f</constrainTo>
+    </point>
+  
+    <lineSegment endpoints="$L ($exstdev,0)" styleNumber="6"/>
+    <lineSegment endpoints="$R (-$exstdev,0)" styleNumber="6"/>
+    
+  </graph>
+
+  <p>
+    These points are located one unit away from the mean, so one is the value of the standard deviation. Try moving the slider below to see the effect on the shape of the graph for different values of the standrad deviation.
+  </p>
+  <slider name="exstdev" from="0.5" to="2" step="0.1" initialValue="1" showValue="false"></slider>
+  
+
+  <!-- Problem Set: Estimating Standard Deviations -->
+
+ <cascade name="stdevproblems" disabled="!$meanproblemsdone"> 
+
+  <title>Example Problems</title>
+
+  <!-- Problem 1: Estimating Standard Deviations -->
+  
+  <problem collapsible startOpen="false">
+    <title>Estimate the standard deviation</title>
+    <p>Estimate the value of the standard deviation of the normal distribtuion shown, you may move the point that exists on the curve to help visualize the location.</p>
+
+    <graph xMin="-7" xMax="7" yMin="-0.1" yMax="0.4" displayYAxis="false" fixAxes>
+      <shortDescription>
+        A graph of a non-standard normal distribution, where the user is asked to estimate the value of the standard deviation of the distribution
+      </shortDescription>
+      <function name="f">
+        $$normalpdf(x, 0, 2)
+      </function>
+      <point name="P">(1,0)
+        <constrainTo>$f</constrainTo>
+      </point>
+      <lineSegment endpoints="$P ($P.x,0)" styleNumber="6"/>
+    </graph>    
+
+    <answer>
+      <mathInput name="std1ans">
+        <label>Estimate the value of the standard deviation:</label> 
+      </mathInput>
+      <award><when>$std1ans > 1.4 and $std1ans < 2.8</when></award>
+      <label>Standard Deviation = </label>
+    </answer>
+    
+  </problem>
+
+  <!-- Problem 2: Estimating Standard Deviations -->
+
+  <problem boxed collapsible startOpen="false"> 
+    <title>Comparing standard deviations</title>
+    <graph xMin="-12" xMax="12" yMin="-0.1" yMax="0.4" displayYAxis="false" fixAxes>
+      <shortDescription>
+        A graph of two normal distributions, where the user is asked to choose the one with the larger standard deviation
+      </shortDescription>
+      <function name="f">
+        $$normalpdf(x, 0, 2)
+      </function>
+      <function name="g" styleNumber="2">
+        $$normalpdf(x, 0, 4)
+      </function>
+    </graph>
+
+  <answer>
+    <choiceInput shuffleOrder>
+      <label>Choose the curve that has the smaller standard deviation:</label>
+      <choice>Red curve</choice>
+      <choice credit="1">Blue curve</choice>
+    </choiceInput>
+  </answer>
+    
+  </problem>
+
+  <!-- Problem 3: Estimating Standard Deviations -->
+  
+  <problem boxed collapsible startOpen="false">
+
+  <title>Comparing standard deviations 2</title>
+    
+  <answer>
+    <choiceInput shuffleOrder>
+      <label>Compared to a standard normal distribution, an aspect of a normal distribution with a standard deviation that is larger than one is:</label>
+      <choice credit="1">Its peak is shorter and the tails are wider.</choice>
+      <choice>Its peak is taller and the tails are wider.</choice>
+      <choice>Its peak is shorter and its tails are closer to the mean.</choice>
+      <choice>Its peak is taller and its tails are closer to the mean.</choice>
+    </choiceInput>
+  </answer>
+  </problem>
+  
+</cascade>
+
+</section>
+
+<!-- CALCULATING PROBABILITIES -->
+
+<section> 
+  <title>Calculating probabilities</title>
+
+  <p>
+    For any continuous probability distribution, we define the associated probability as the <alert>area under the curve from as far left as possible, up to a given value</alert>. This is known as the <alert>cumulative area</alert> under the curve, and is by default situated on the left-end of the distribution. Mathematical formulas exist to calculate this area, but the computations are often very involved and thus we rely on technology to do this for us.</p>
+
+  <p>
+  On a standard normal distribution, it is common to name the horizontal axis the <m>z</m>-axis, as opposed to the <m>x</m>-axis, as this ties in the relationship between <m>z</m>-scores and normal distributions, which we will explore in a later section. This region that defines the probability is always illustrated as a shaded region between the curve and the <m>z</m>-axis. We use the following notation to indicate the area of this region:
+<me>P(Z < a) = \text{cumulative area under the curve up to } z=a</me>
+  </p>
+
+  <p>
+    Drag the point along the axis below to see how the shaded region changes based on different values of <m>z</m>. The area of the shaded region, which defines the probability, is also shown below.
+  </p>
+  
+<graph xMin="-4" xMax="4" yMin="-0.2" yMax="0.6" fixAxes>
+
+  <shortDescription>A graph that allows the user to experience visually what is meant by an area to the left of a given z-score on a standard normal distribution for different values of z.</shortDescription>
+  
+  <function name="f">
+    1/sqrt(2pi)*e^(-0.5*x^2)
+  </function>
+  
+  <line name="axisline" hide>y = 0</line>
+  <point name="Z0">
+    (0,0)
+    <constrainTo>$axisline</constrainTo>
+  </point>
+
+  <regionBetweenCurveXAxis 
+    function="$f" 
+    boundaryValues="-5 $Z0.x"
+  />
+  
+</graph>
+
+<p>
+  <m>P(Z < <number>round($Z0.x,2)</number>) = <number>round($$normalcdf($Z0.x),4)</number></m>
+</p>
+  
+<p>
+  The total area under a continuous distribution function is equal to one, and because the normal distribution is perfectly symmetric, there is 50% of the area to the left of the mean, and 50% to the right. 
+</p>
+
+You can use the following videos to learn how to calculate normal distribution probabilities using your chosen technology:
+
+<definition boxed collapsible startOpen="false">
+  <title>TI-83 Instructions</title>
+  <video youtube="6EipHTAUH7Y">
+    <shortDescription>Instructions on how to calculate normal distribution probabilites using the TI-83 Calculator</shortDescription>
+  </video>
+</definition>
+
+<definition boxed collapsible startOpen="false">
+  <title>TI-84 Instructions</title>
+  <video youtube="tx7_zuU-cF8">
+    <shortDescription>Instructions on how to calculate normal distribution probabilites using the TI-84 Calculator</shortDescription>
+  </video>
+</definition>
+
+<definition boxed collapsible startOpen="false">
+  <title>Online Stats Calculator Instructions</title>
+  <video youtube="HnnMPYjSHPI">
+    <shortDescription>Instructions on how to calculate normal distribution probabilites using the online Stats Calculator</shortDescription>
+  </video>
+</definition>
+
+<!-- CALCULATING AREA TO THE LEFT -->
+  
+<problem>
+  <title>Area to the Left Example</title>
+  The area to the left of <m>z=1.21</m> is represented by: <m>P(Z < 1.21)</m>, and is illustrated as:
+
+<graph xMin="-4" xMax="4" yMin="-0.2" yMax="0.6" fixAxes>
+  <shortDescription>A pictoral representation of the area under the curve of the normal distribution graph from negative infinity up to z=1.21</shortDescription>
+  <function name="f">
+    1/sqrt(2pi)*e^(-0.5*x^2)
+  </function>
+
+  <regionBetweenCurveXAxis 
+    function="$f" 
+    boundaryValues="-4 1.21"
+  />
+  
+</graph>
+  Use your chosen technology in order to calculate the area of the shaded region, and round the answer to three decimal places. You should get 0.887, but verify this with your calculator, and then try the following examples.
+</problem>
+
+<!-- Problem Set: Area to the Left -->
+  
+<cascade name="leftproblems" disabled="!$stdevproblemsdone">
+
+  <title>Left-end area practice</title>
+
+  <!-- Problem 1: Area to the Left -->
+
+  <problem boxed collapsible startOpen="false"> 
+    <title>Calculate an area to the left</title>
+      <cascade>
+      <p>
+        Shade the region indicated by <m>P(Z < 0.64)</m>:
+      </p>
+      <graph xMin="-4" xMax="4" yMin="-0.2" yMax="0.6" fixAxes>
+        <shortDescription>A graph that the student must interact with to demonstrate their understanding of what is meant by the given probability notation.
+        </shortDescription>
+        <function name="f">
+          1/sqrt(2pi)*e^(-0.5*x^2)
+        </function>
+        <line name="axisline" hide>y = 0</line>
+        <point name="Z">
+          (0,0)
+          <constrainTo>$axisline</constrainTo>
+        </point>
+
+        <regionBetweenCurveXAxis 
+          function="$f" 
+          boundaryValues="-4 $Z.x"
+        />
+    </graph>
+    
+    <answer>
+      <label><m>z = <round numDecimals="2">$Z.x</round></m></label>
+      <award><when>$Z.x >= 0.6 and $Z.x <= 0.7</when></award>
+    </answer>
+
+    <answer>
+      <choiceInput shuffleOrder>
+        <label>Without calculating this probability, will the value be:</label>
+        <choice credit="1">Larger than 50%</choice>
+        <choice>Smaller than 50%</choice>
+        <choice>Equal to 50%</choice>
+        <choice>It is unable to predict</choice>
+      </choiceInput>
+    </answer>
+      
+    <p>
+      Now calculate the value of the probability <m>P(Z < 0.64)</m> using technology. Round your answer to three decimals.
+    </p>
+      
+     <answer>
+      <mathInput name="leftarea1">
+        <label><m>P(Z < 0.64) =</m> </label>
+      </mathInput>
+      <award credit="1"><when>round($leftarea1,3) = 0.739</when></award>
+      <award credit="0.8" name="la1_round"><when>abs($leftarea1 - 0.738) <= $probtol</when></award>
+      <award credit="0.5" name="la1_comp"><when>abs($leftarea1 - 0.261) <= $probtol</when></award>
+    </answer>
+
+  </cascade>
+  <feedback condition="$la1_round">Your answer is close, but you need to check your rounding.</feedback>
+  <feedback condition="$la1_comp">You are on the right track, but it looks like you have the complement of the value you need.</feedback>
+  </problem>
+
+  <!-- Problem 2: Area to the Left -->
+  
+  <problem boxed collapsible startOpen="false"> 
+    <title>Calculate an area to the left</title>
+    <cascade>
+    Shade the region indicated by <m>P(Z < -1.47)</m>:
+
+  <graph xMin="-4" xMax="4" yMin="-0.2" yMax="0.6">
+  <shortDescription>A graph that the student must interact with to demonstrate their understanding of what is meant by the given probability notation.</shortDescription>
+  <function name="f">
+    1/sqrt(2pi)*e^(-0.5*x^2)
+  </function>
+  
+  <line name="axisline" hide>y = 0</line>
+  <point name="Z">
+    (0,0)
+    <constrainTo>$axisline</constrainTo>
+  </point>
+
+  <regionBetweenCurveXAxis 
+    function="$f" 
+    boundaryValues="-5 $Z.x"
+  />
+  </graph>
+    
+    <answer>
+      <label><m>z = <round numDecimals="2">$Z.x</round></m></label>
+      <award><when>$Z.x >= -1.55 and $Z.x <= -1.40</when></award>
+    </answer>
+
+    <answer>
+    <choiceInput shuffleOrder>
+      <label>Without calculating this probability, will the value be:</label>
+      <choice>Larger than 50%</choice>
+      <choice credit="1">Smaller than 50%</choice>
+      <choice>Equal to 50%</choice>
+      <choice>It is unable to predict</choice>
+    </choiceInput>
+  </answer>
+      
+    <p>Now calculate the value of the probability <m>P(Z < -1.47)</m> using technology. Round your answer to three decimal places.</p>
+    <answer>
+      <mathInput name="leftarea2">
+        <label><m>P(Z < -1.47) =</m> </label>
+      </mathInput>
+      <award credit="1"><when>round($leftarea2,3) = 0.071</when></award>
+      <award credit="0.8" name="la2_round"><when>abs($leftarea2 - 0.071) <= $probtol</when></award>
+      <award credit="0.5" name="la2_comp"><when>abs($leftarea2 - 0.929) <= $probtol</when></award>
+    </answer>
+    </cascade>
+    
+    <feedback condition="$la2_round">Your answer is close, but you need to check your rounding.</feedback>
+    <feedback condition="$la2_comp">You are on the right track, but it looks like you have the complement of the value you need.</feedback>
+
+  </problem>
+  
+</cascade>
+</section>
+
+<!-- CALCULATING AREA TO THE RIGHT -->
+
+<section>
+  <title>Area to the Right Example</title>
+  The area to the right of <m>z=-0.79</m> is represented by: <m>P(Z < -0.79)</m>, and is illustrated as:
+
+<graph xMin="-4" xMax="4" yMin="-0.2" yMax="0.6" fixAxes>
+  <shortDescription>A pictoral representation of the area under the curve of the normal distribution graph from z=-0.79 to positive infinity</shortDescription>
+  <function name="f">
+    1/sqrt(2pi)*e^(-0.5*x^2)
+  </function>
+
+  <regionBetweenCurveXAxis 
+    function="$f" 
+    boundaryValues="-5 -0.79"
+    hide="!$showleft"
+    styleNumber="2"
+  />  
+  <regionBetweenCurveXAxis 
+    function="$f" 
+    boundaryValues="-0.79 5"
+    hide="!$showright"
+  />
+
+  <lineSegment endpoints="(-0.79,0) (-0.79,0.292)" styleNumber="6" hide="!$showline"/>
+  
+  <booleanInput anchor="(2,0.5)" name="showleft" prefill="false">
+    <label>Show <m>P(Z < -0.79)</m></label>
+  </booleanInput>
+  <booleanInput anchor="(2,0.45)" name="showright" prefill="true">
+    <label>Show <m>P(Z > -0.79)</m></label>
+  </booleanInput>
+  <booleanInput anchor="(2,0.4)" name="showline" prefill="false">
+    <label>Show <m>P(Z = -0.79)</m></label>
+  </booleanInput>
+</graph>
+
+<p>
+Depending on what you are using to calculate your normal distribution probabilities, you may or may not have the ability to calculate a right-tail (the area to the right of a given <m>z</m>-score) directly. This is not a problem, however, because in continuous distributions like the normal distribution, left-tail and right-tail probabilities are complementary. This means that:
+  <me>P(Z > a) = 1 - P(Z < a)</me>
+As long as you can calculate a left-tail probability, you will also be able to calculate a right-tail probability. Click on the toggle buttons to see visually how these regions are complementary.</p>
+<p>
+  Another property you can see here is that the probabilitiy of a single outcome in a continuous distribution is always zero, because there is no region at a single point to calculate an area. You can click on this item in the chart above to see this as well. Using our notation for probabilities, this looks like:
+  <me>P(Z = a) = 0</me>
+</p>
+  Use your chosen technology to calculate the area of each region and verify that these are complements. Use three decimal places of accuracy.
+<cascade name="rightexample" disabled="!$leftproblemsdone">
+<p>
+  <answer>
+    <mathInput name="rtprobexa">
+      <label>Area of the blue region: <m>P(Z > -0.79)=</m></label>
+    </mathInput>
+    <award><when>round($rtprobexa,3) = 0.785</when></award>
+    <award credit="0.8" name="rtrounda"><when>abs($rtprobexa - 0.785) <= $probtol</when></award>
+    <award credit="0.5" name="rtcompa"><when>abs($rtprobexa - 0.215) <= $probtol</when></award>
+  </answer>
+</p>
+<p>
+  <answer>
+    <mathInput name="rtprobexb">
+      <label>Area of the red region: <m>P(Z < -0.79)=</m></label>
+    </mathInput>
+    <award><when>round($rtprobexb,3) = 0.215</when></award>
+    <award credit="0.8" name="rtroundb"><when>abs($rtprobexb - 0.215) <= $probtol</when></award>
+    <award credit="0.5" name="rtcompb"><when>abs($rtprobexb - 0.785) <= $probtol</when></award>
+  </answer>
+</p>
+<p>
+  <answer>
+    <mathInput name="rtprobexc">
+      <label>What is the value of the complement: <m>1 - P(Z < -0.79)</m>?</label>
+    </mathInput>
+    <award><when>round($rtprobexc,3) = 0.785</when></award>
+  </answer>
+</p>
+</cascade>
+    <feedback condition="$rtrounda">Your answer is close, but you need to check your rounding.</feedback>
+    <feedback condition="$rtcompa">You are on the right track, but it looks like you have the complement of the value you need.</feedback>
+    <feedback condition="$rtroundb">Your answer is close, but you need to check your rounding.</feedback>
+    <feedback condition="$rtcompb">You are on the right track, but it looks like you have the complement of the value you need.</feedback>
+</section>
+
+<!-- Problem Set: Right-tail probability -->
+
+<section>
+  <title>Right-tail area practice</title>
+  
+<cascade name="rightproblems" disabled="!$rightexampledone"> 
+
+  <!-- Problem 1: Right-tail probability -->
+  
+  <problem boxed collapsible startOpen="false"> 
+    <title>Calculate an area to the right</title>
+    <cascade>
+    Shade the region indicated by <m>P(Z > 0.35)</m>:
+
+  <graph xMin="-4" xMax="4" yMin="-0.2" yMax="0.6" fixAxes>
+  <shortDescription>A graph that the student must interact with to demonstrate their understanding of what is meant by the given probability notation.</shortDescription>
+  <function name="f">
+    1/sqrt(2pi)*e^(-0.5*x^2)
+  </function>
+  
+  <line name="axisline" hide>y = 0</line>
+  <point name="Z">
+    (0,0)
+    <constrainTo>$axisline</constrainTo>
+  </point>
+
+  <regionBetweenCurveXAxis 
+    function="$f" 
+    boundaryValues="$Z.x 5"
+  />
+  </graph>
+    
+    <answer>
+      <label><m>z = <round numDecimals="2">$Z.x</round></m></label>
+      <award><when>$Z.x >= 0.3 and $Z.x <= 0.4</when></award>
+    </answer>
+    
+
+    <answer>
+    <choiceInput shuffleOrder>
+      <label>Without calculating this probability, will the value be:</label>
+      <choice>Larger than 50%</choice>
+      <choice credit="1">Smaller than 50%</choice>
+      <choice>Equal to 50%</choice>
+      <choice>It is unable to predict</choice>
+    </choiceInput>
+  </answer>
+      
+    <p>Now calculate the value of the probability <m>P(Z > 0.35)</m> using technology. Round to three decimal places.</p>
+    <answer>
+      <mathInput name="rightarea1">
+        <label><m>P(Z > 0.35) =</m> </label>
+      </mathInput>
+      <award credit="1"><when>round($rightarea1,3) =  0.363</when></award>
+      <award credit="0.8" name="ra1_round"><when>abs($rightarea1 - 0.363) <= $probtol</when></award>
+      <award credit="0.5" name="ra1_comp"><when>abs($rightarea1 - 0.637) <= $probtol</when></award>
+    </answer>
+    </cascade>
+    
+    <feedback condition="$ra1_round">Your answer is close, but you need to check your rounding.</feedback>
+    <feedback condition="$ra1_comp">You are on the right track, but it looks like you have the complement of the value you need.</feedback>
+    
+  </problem>
+
+  <!-- Problem 2: Right-tail probability -->
+  
+  <problem boxed collapsible startOpen="false"> 
+    <title>Calculate an area to the right</title>
+    <cascade>
+    Shade the region indicated by <m>P(Z > -2.38)</m>:
+
+  <graph xMin="-4" xMax="4" yMin="-0.2" yMax="0.6" fixAxes>
+  <shortDescription>A graph that the student must interact with to demonstrate their understanding of what is meant by the given probability notation.</shortDescription>
+  <function name="f">
+    1/sqrt(2pi)*e^(-0.5*x^2)
+  </function>
+  
+  <line name="axisline" hide>y = 0</line>
+  <point name="Z">
+    (0,0)
+    <constrainTo>$axisline</constrainTo>
+  </point>
+
+  <regionBetweenCurveXAxis 
+    function="$f" 
+    boundaryValues="$Z.x 5"
+  />
+  </graph>
+    
+    <answer>
+      <label><m>z = <round numDecimals="2">$Z.x</round></m></label>
+      <award><when>$Z.x >= -2.45 and $Z.x <= -2.3</when></award>
+    </answer>
+    
+
+    <answer>
+    <choiceInput shuffleOrder>
+      <label>Without calculating this probability, will the value be:</label>
+      <choice credit="1">Larger than 50%</choice>
+      <choice>Smaller than 50%</choice>
+      <choice>Equal to 50%</choice>
+      <choice>It is unable to predict</choice>
+    </choiceInput>
+  </answer>
+      
+    <p>Now calculate the value of the probability <m>P(Z > -2.38)</m> using technology. Round to three decimal places.</p>
+    <answer>
+      <mathInput name="rightarea2">
+        <label><m>P(Z > -2.38) =</m> </label>
+      </mathInput>
+      <award credit="1"><when>round($rightarea2,3) =  0.991</when></award>
+      <award credit="0.8" name="ra2_round"><when>abs($rightarea2 - 0.991) <= $probtol</when></award>
+      <award credit="0.5" name="ra2_comp"><when>abs($rightarea2 - 0.009) <= $probtol</when></award>
+    </answer>
+    </cascade>
+    
+    <feedback condition="$ra2_round">Your answer is close, but you need to check your rounding.</feedback>
+    <feedback condition="$ra2_comp">You are on the right track, but it looks like you have the complement of the value you need.</feedback>
+    
+  </problem>
+  
+</cascade>
+
+</section>
+  
+<!-- CALCULATING AREA BETWEEN TWO VALUES -->
+
+<section>
+  <title>Area Between Example</title>
+  The area between two <m>z</m>-scores is notated as:
+  <me>P(a < Z < b)</me>
+  and is interpreted as:
+  <me>P(Z > a) \text{ and } P(z < b)</me>
+  If we choose two particular <m>z</m>-scores, such as <m>z=-0.82</m> and <m>z=1.12</m>, then we visualize this region as:
+  
+  <!-- Graph to visualize the area between two z-scores -->
+  
+  <graph xMin="-4" xMax="4" yMin="-0.2" yMax="0.6" fixAxes>
+    <shortDescription>
+      A pictoral representation of the area under the curve of the normal distribution graph between z=-0.82 to z = 1.12. The user can toggle on and off different regions in order to understand the relationships among the areas.
+    </shortDescription>
+    
+    <function name="f">
+      $$normalpdf(x, 0, 1)
+    </function>
+  
+    <regionBetweenCurveXAxis 
+      function="$f" 
+      boundaryValues="-5 -0.82"
+      hide="!$showlower1"
+      styleNumber="2"
+    />  
+    <regionBetweenCurveXAxis 
+      function="$f" 
+      boundaryValues="-5 1.12"
+      hide="!$showlower2"
+      styleNumber="2"
+    />
+    <regionBetweenCurveXAxis
+      function="$f"
+      boundaryValues="-0.82 1.12"
+      hide="!$showbetween"
+      styleNumber="1"
+    />
+    
+    <booleanInput anchor="(1,0.5)" name="showlower1" prefill="false" positionFromAnchor="right">
+      <label>Show <m>P(Z < -0.82)</m></label>
+    </booleanInput>
+    <booleanInput anchor="(1,0.45)" name="showlower2" prefill="false" positionFromAnchor="right">
+      <label>Show <m>P(Z < 1.12)</m></label>
+    </booleanInput>
+    <booleanInput anchor="(-3.8,0.5)" name="showbetween" prefill="true" positionFromAnchor="right">
+      <label>Show <m>P(-0.82 < Z < 1.12)</m></label>
+    </booleanInput>
+  </graph>
+
+<p>
+As with right-tailed probabilities, you may or may not be able to calculate the area between two <m>z</m>-scores directly, but you can calculate the area between two scores by finding the left-tail area associated with the larger <m>z</m>-score and subtracting the area of the smaller <m>z</m>-score. This means that assuming <m>b > a</m>:
+  <me>P(a < Z < b) = P(z < b) - P(z < a)</me>
+Use the graph above that demonstrates the areas associated between, and to the left of two different <m>z</m>-scores to convince yourself that this is true, and then verify it by answering the following questions. Use three decimal places of accuracy.
+</p>
+<cascade name="betweenexample" disabled="!$rightproblemsdone">
+<p>
+  <answer>
+    <mathInput name="btwex1">
+      <label>Area to the left of the larger <m>z</m>-score: <m>P(Z < 1.12)=</m></label>
+    </mathInput>
+    <award credit="1"><when>round($btwex1,3) = 0.869</when></award>
+    <award credit="0.8" name="btex1rnd"><when>abs($btwex1 - 0.869) <= $probtol</when></award>
+    <award credit="0.5" name="btex1comp"><when>abs($btwex1 - (1-.869)) <= $probtol</when></award>
+  </answer>
+</p>
+<p>
+  <answer>
+    <mathInput name="btwex2">
+      <label>Area to the left of the smaller <m>z</m> score: <m>P(Z < -0.82)=</m></label>
+    </mathInput>
+    <award credit="1"><when>round($btwex2,3) = 0.206</when></award>
+    <award credit="0.8" name="btex2rnd"><when>abs($btwex2 - 0.206) <= $probtol</when></award>
+    <award credit="0.5" name="btex2comp"><when>abs($btwex2 - (1-0.206)) <= $probtol</when></award>
+  </answer>
+</p>
+<p>
+  <answer>
+    <mathInput name="btwex3">
+      <label>Now subtract these two values to get the area between them: <m>P(-0.82 < Z < 1.12) =</m></label>
+    </mathInput>
+    <award credit="1"><when>round($btwex3,3) = 0.663</when></award>
+    <award credit="0.5" name="btex3neg"><when>round($btwex3,3) = -0.663</when></award>
+  </answer>
+</p>
+</cascade>
+  <feedback condition="$btex1rnd">Be careful and ensure you are rounding your answer correctly.</feedback>
+  <feedback condition="$btex1comp">You are on the right track, but you may have calculated a right-tail probability instead of a left-tail.
+  </feedback>
+  <feedback condition="$btex2rnd">Be careful and ensure you are rounding your answer correctly.</feedback>
+  <feedback condition="$btex2comp">You are on the right track, but you may have calculated a right-tail probability instead of a left-tail.
+  </feedback> 
+  <feedback condition="$btex3neg">You should never get a negative value for a probability, are you sure you did the subtraction in the correct order?</feedback>
+</section>
+
+<!-- Problem Set: Between probability -->
+
+<section>
+  <title>Area Between Practice</title>
+  
+  <cascade name="betweenproblems" disabled="!$betweenexampledone">
+
+  <!-- Problem 1: Between probability -->
+  
+  <problem boxed collapsible startOpen="false"> 
+    <title>Calculate an area between two values</title>
+    <cascade>
+    Shade the region indicated by <m>P(0.12 < Z < 2.35)</m>. Please note that <m>B</m> must be greater than <m>A</m>.
+
+  <graph xMin="-4" xMax="4" yMin="-0.2" yMax="0.6" fixAxes>
+  <shortDescription>A graph that the student must interact with to demonstrate their understanding of what is meant by the given probability notation.</shortDescription>
+  <function name="f">
+    1/sqrt(2pi)*e^(-0.5*x^2)
+  </function>
+  
+  <line name="axisline" hide>y = 0</line>
+  <point name="A" coords="(-1,0)" labelIsName>
+    <constrainTo>$axisline</constrainTo>
+  </point>
+
+  <point name="B" coords="(1,0)" labelIsName>
+    <constrainTo>$axisline</constrainTo>
+  </point>
+    
+  <regionBetweenCurveXAxis 
+    function="$f" 
+    boundaryValues="$A.x $B.x"
+  />
+  </graph>
+    
+    <answer>
+      <label><m>a = <round numDecimals="2">$A.x</round></m>, <m>b = <round numDecimals="2">$B.x</round></m></label>
+      <award><when>($A.x >= 0.05 and $A.x <= 0.2) and ($B.x >= 2.3 and $B.x <= 2.4)</when></award>
+    </answer>
+    
+
+    <answer>
+    <choiceInput shuffleOrder>
+      <label>Without calculating this probability, will the value be:</label>
+      <choice>Larger than 50%</choice>
+      <choice credit="1">Smaller than 50%</choice>
+      <choice>Equal to 50%</choice>
+      <choice>It is unable to predict</choice>
+    </choiceInput>
+  </answer>
+      
+    <p>Now calculate the value of the probability <m>P(0.12 < Z < 2.35)</m> using technology. Round your answer to three decimal places.</p>
+    <answer>
+      <mathInput name="btwarea1">
+        <label><m>P(0.12 < Z < 2.35) =</m> </label>
+      </mathInput>
+      <award credit="1"><when>round($btwarea1,3) =  0.443</when></award>
+      <award credit="0.8" name="btw1_round"><when>abs($btwarea1 - 0.443) <= $probtol</when></award>
+      <award credit="0.5" name="btw1_comp"><when>abs($btwarea1 - (1-0.443)) <= $probtol</when></award>
+    </answer>
+    </cascade>
+    
+    <feedback condition="$btw1_round">Your answer is close, but you need to check your rounding.</feedback>
+    <feedback condition="$btw1_comp">You are on the right track, but it looks like you have the complement of the value you need.</feedback>
+    
+  </problem>
+
+  <!-- Problem 2: Between probability -->
+  
+  <problem boxed collapsible startOpen="false"> 
+    <title>Calculate an area between two values</title>
+    <cascade>
+    Shade the region indicated by <m>P(-0.63 < Z < 1.08)</m>. Please note that <m>B</m> must be greater than <m>A</m>.
+
+  <graph xMin="-4" xMax="4" yMin="-0.2" yMax="0.6" fixAxes>
+  <shortDescription>A graph that the student must interact with to demonstrate their understanding of what is meant by the given probability notation.</shortDescription>
+  <function name="f">
+    1/sqrt(2pi)*e^(-0.5*x^2)
+  </function>
+  
+  <line name="axisline" hide>y = 0</line>
+  <point name="A" coords="(-1,0)" labelIsName>
+    <constrainTo>$axisline</constrainTo>
+  </point>
+
+  <point name="B" coords="(1,0)" labelIsName>
+    <constrainTo>$axisline</constrainTo>
+  </point>
+    
+  <regionBetweenCurveXAxis 
+    function="$f" 
+    boundaryValues="$A.x $B.x"
+  />
+  </graph>
+    
+    <answer>
+      <label><m>a = <round numDecimals="2">$A.x</round></m>, <m>b = <round numDecimals="2">$B.x</round></m></label>
+      <award><when>($A.x >= -0.67 and $A.x <= -0.60) and ($B.x >= 1.03 and $B.x <= 1.13)</when></award>
+    </answer>
+    
+
+    <answer>
+    <choiceInput shuffleOrder>
+      <label>Without calculating this probability, will the value be:</label>
+      <choice>Larger than 50%</choice>
+      <choice>Smaller than 50%</choice>
+      <choice>Equal to 50%</choice>
+      <choice credit="1">It is unable to predict</choice>
+    </choiceInput>
+  </answer>
+      
+    <p>Now calculate the value of the probability <m>P(-0.63 < Z < 1.08)</m> using technology. Round your answer to three decimal places.</p>
+    <answer>
+      <mathInput name="btwarea2">
+        <label><m>P(-0.63 < Z < 1.08) =</m> </label>
+      </mathInput>
+      <award credit="1"><when>round($btwarea2,3) =  0.596</when></award>
+      <award credit="0.8" name="btw2_round"><when>abs($leftarea2 - 0.596) <= $probtol</when></award>
+      <award credit="0.5" name="btw2_comp"><when>abs($leftarea2 - (1-0.596)) <= $probtol</when></award>
+    </answer>
+    </cascade>
+    
+    <feedback condition="$btw2_round">Your answer is close, but you need to check your rounding.</feedback>
+    <feedback condition="$btw2_comp">You are on the right track, but it looks like you have the complement of the value you need.</feedback>
+    
+  </problem>
+
+</cascade>
+  
+</section>
