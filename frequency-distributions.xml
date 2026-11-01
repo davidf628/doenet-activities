@@ -10,8 +10,8 @@
   <boolean name="video5comp">$v5.fractionWatched > 0.98 or $sq</boolean>
   <boolean name="video6comp">$v6.fractionWatched > 0.98 or $sq</boolean> 
   <boolean name="video7comp">$v7ti.fractionWatched > 0.98 or $v7sc.fractionWatched > 0.98 or $sq</boolean>
-  <boolean name="video8comp">$v8ti.fractionWatched > 0.98 or $v7sc.fractionWatched > 0.98 or$sq</boolean>
-  <boolean name="video9comp">$v9ti.fractionWatched > 0.98 or $v7sc.fractionWatched > 0.98 or $sq</boolean> 
+  <boolean name="video8comp">$v8ti.fractionWatched > 0.98 or $v8sc.fractionWatched > 0.98 or$sq</boolean>
+  <boolean name="video9comp">$v9ti.fractionWatched > 0.98 or $v9sc.fractionWatched > 0.98 or $sq</boolean> 
 
   <boolean name="question1comp">$q1.creditAchieved = 1 or $sv</boolean> 
   <boolean name="question2comp">$q2.creditAchieved = 1 or $sv</boolean>
@@ -417,14 +417,14 @@
       18, 21, 16, 52, 25, 11, 9, 6
     </p>
 
-    <answer name="q5">
-      <mathInput name="q5ans">
+    <answer name="q6">
+      <mathInput name="q6ans">
         <label>Median = </label>
       </mathInput>
-      <award><when>$q5ans = 17</when></award>
+      <award><when>$q6ans = 17</when></award>
     </answer>
 
-    <hint hide="$q5.numSubmissions < 3">
+    <hint hide="$q6.numSubmissions < 3">
       To calculate the median, first sort all the data items,
       then determine the value that sits in the middle. Since
       there is an even number of values, you will need to take
