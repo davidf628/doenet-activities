@@ -1,0 +1,1130 @@
+<setup>
+
+  <boolean name="sv">true</boolean>
+  <boolean name="sq">true</boolean>
+  
+  <boolean name="video1comp">$v1.fractionWatched > 0.98 or $sq</boolean> 
+  <boolean name="video2comp">$v2.fractionWatched > 0.98 or $sq</boolean>
+  <boolean name="video3comp">$v3.fractionWatched > 0.98 or $sq</boolean> 
+  <boolean name="video4comp">$v4.fractionWatched > 0.98 or $sq</boolean>
+  <boolean name="video5comp">$v5.fractionWatched > 0.98 or $sq</boolean>
+  <boolean name="video6comp">$v6.fractionWatched > 0.98 or $sq</boolean> 
+  <boolean name="video7comp">$v7ti.fractionWatched > 0.98 or $v7sc.fractionWatched > 0.98 or $sq</boolean>
+  <boolean name="video8comp">$v8ti.fractionWatched > 0.98 or $v7sc.fractionWatched > 0.98 or$sq</boolean>
+  <boolean name="video9comp">$v9ti.fractionWatched > 0.98 or $v7sc.fractionWatched > 0.98 or $sq</boolean> 
+
+  <boolean name="question1comp">$q1.creditAchieved = 1 or $sv</boolean> 
+  <boolean name="question2comp">$q2.creditAchieved = 1 or $sv</boolean>
+  <boolean name="question3comp">$q4.creditAchieved = 1 or $sv</boolean>
+  <boolean name="question4comp">$q7.creditAchieved = 1 or $sv</boolean>
+  <boolean name="question5comp">$q8.creditAchieved = 1 or $sv</boolean>
+  <boolean name="question6comp">$q12.creditAchieved = 1 or $sv</boolean>
+  <boolean name="question7comp">$q13.creditAchieved = 1 or $sv</boolean>
+  <boolean name="question8comp">$q14.creditAchieved = 1 or $sv</boolean>
+  <boolean name="question9comp">$q15.creditAchieved = 1 or $sv</boolean>
+
+  <text name="v1link">A7Ttsb59mVw</text>
+  <text name="v2link">Yw1yYrNfgQE</text>
+  <text name="v3link">IQaj75dImYQ</text>
+  <text name="v4link">q0mqCqVF-1Q</text>
+  <text name="v5link">PUK9WBc5AvY</text>
+  <text name="v6link">hk_1j2lAoZQ</text>
+  <text name="v7link_ti">n0Zo3dMCsnY</text>
+  <text name="v7link_sc">lcRFgy2d96o</text>
+  <text name="v8link_ti">oU27rp7p_Og</text>
+  <text name="v8link_sc">XRko4pSdcXg</text>
+  <text name="v9link_ti">405P4jKXBvo</text>
+  <text name="v9link_sc">IzOvQ4suI8s</text>
+ 
+</setup>
+
+<title>
+  Lesson 1-4: Measures of Central Tendency
+</title>
+
+<hr />
+<p>
+  Enter your full name below, and press the enter button next to the text field, so I can track who has completed this assignment and who has not. These assignments in Doenet are not connected to OAKS. 
+</p>
+
+<p>
+  <answer type="text" handGraded="true" name="studentName">
+    <label>Name: </label>
+  </answer>
+</p>
+
+<hr />
+
+<p>
+  The lessons below will help you learn about measures of central tendency and the different types of measures available, along with advantages and disadvantages of each. At the conclusion of the lesson, you should be comfortable with the following topics:
+ <ul>
+   <li>Understanding how a mean, median, and mode are calculated</li>
+   <li>Understanding the difference between a mean and weighted mean, and how to calculate a weighted mean</li>
+   <li>Understadning when it is appropriate to use a mean, versus a median or mode</li>
+   <li>How to calculate a mean and median using your chosen class technology</li>
+   <li>How to calculate a weighted mean using your chosen class technology</li>
+ </ul>
+</p> 
+
+<p>
+  The total video run-time for all 9 videos is approximately 45 minutes. To complete the videos, and answer the questions, you should budget about 1.5 - 2 hours. The homework in XYZ will require at least an additional hour.
+</p>
+
+<p>
+  The last three videos give you a choice to view the examples performed using a TI calculator, or the online Stats Calculator that I developed for the class. To get a full grade in this lesson, you do not need to watch both sets of options, only the ones that correspond to your chosen technology.
+</p>
+
+<!-- VIDEO: PART 1 -- Sample Means -->
+
+<section boxed="true" collapsible="true" startOpen="true">
+  <title>Lesson 1-4 Part 1 of 9</title>
+  <video name="v1" youtube="$v1link">
+    <shortDescription>Lesson 1-4 Part 1 of 9</shortDescription>
+  </video>
+  <p>
+    $studentName: Percent Viewed (1-4 Part 1) = <number>round($v1.fractionWatched * 100, 0)</number>%
+  </p>
+</section>
+
+<!-- QUESTIONS: PART 1 -->
+
+<cascade hide="!$video1comp">
+
+  <!-- QUESTION 1 --> 
+  
+  <exercise boxed="true" collapsible="true" startOpen="false">
+    <title>Question 1</title>
+
+    <p>
+      Calculate the mean of the following data set:
+      <br/><br/>
+      9, 6, 15, 12, 11, 14, 2, 20
+      <br/><br/>
+      Round your answer to three decimals, if necessary.
+    </p>
+
+    <answer name="q1">
+      <mathInput name="q1ans">
+        <label>Mean = </label>
+      </mathInput>
+      <award credit="1"><when>$q1ans = 11.125</when></award>
+      <award credit="0.5" name="q1rnd"><when>abs($q1ans - 11.125) < 0.1 or $q1ans = 11</when></award>
+      <award credit="0" name="q1big"><when>$q1ans > 20</when></award>
+      <award credit="0" name="q1small"><when>$q1ans < 2</when></award>
+      <award credit="0" name="q1neg"><when>$q1ans < 0</when></award>
+    </answer>
+
+    <feedback condition="$q1big">
+      The average of a set of data can not be larger than the maximum
+      value.
+    </feedback>
+    <feedback condition="$q1small">
+      The average of a set of data can not be smaller than the minimum
+      value.
+    </feedback>
+    <feedback condition="$q1neg">
+      The mean of a set of positive values can't be a negative number.
+    </feedback>
+    <feedback condition="$q1rnd">
+      Your answer is close, but make sure you are rounding properly.
+    </feedback>
+    
+    <hint hide="$q1.numSubmissions < 3">
+      To calculate the mean, first add together all the data items.
+      <br/><br/> 
+      The sum here is 9 + 6 + 15 + 12 + 11 + 14 + 2 + 20, which is 89.
+      <br/><br/>
+      You then divide this by the number of values that exists, which 
+      is 8. 
+      <br/><br/>
+      If you're doing that correctly, make sure you are rounding
+      properly to three decimal places, as requested.
+    </hint>
+    
+  </exercise>
+
+</cascade>
+
+<!-- VIDEO: PART 2 -- Weighted Means -->
+
+<section boxed="true" collapsible="true" startOpen="true" hide="!$question1comp">
+  <title>Lesson 1-4 Part 2 of 9</title>
+  <video name="v2" youtube="$v2link">
+    <shortDescription>Lesson 1-4 Part 2 of 9</shortDescription>
+  </video>
+  <p>
+    $studentName: Percent Viewed (1-4 Part 2) = <number>round($v2.fractionWatched * 100, 0)</number>%
+  </p>
+</section>
+
+<!-- QUESTIONS: PART 2 -->
+
+<cascade hide="!$video2comp">
+
+  <!-- QUESTION 2 --> 
+  
+  <exercise boxed="true" collapsible="true" startOpen="false">
+    <title>Question 2</title>
+
+    <p>
+      Calculate the weighted mean of the following frequency
+      distribution.
+      <br/><br/>
+      Round your answer to three decimal places.
+    </p>
+
+    <table>
+      <title>Frequency Distribution</title>
+      <tabular startBorder="minor" endBorder="minor" 
+        topBorder="minor" bottomBorder="minor" width="60%" hAlign="center">
+        <row>
+          <cell><m>x</m></cell>
+          <cell>4</cell>
+          <cell>8</cell>
+          <cell>12</cell>
+          <cell>16</cell>
+          <cell>20</cell>
+        </row>
+        <row>
+          <cell><m>f</m></cell>
+          <cell>3</cell>
+          <cell>1</cell>
+          <cell>8</cell>
+          <cell>15</cell>
+          <cell>12</cell>
+        </row>
+      </tabular>
+    </table>
+
+    <answer name="q2">
+      <mathInput name="q2ans">
+        <label>Weighted Mean = </label>
+      </mathInput>
+      <award credit="1"><when>abs($q2ans - 15.282) < 0.001</when></award>
+      <award credit="0" name="q2big"><when>$q2ans > 20</when></award>
+      <award credit="0" name="q2small"><when>$q2ans < 4</when></award>
+      <award credit="0" name="q2nonw"><when>$q2ans = 12</when></award>
+      <award credit="0.5" name="q2rnd">
+        <when>
+          $q2ans = 15 or abs($q2ans - 15.282) < 0.1
+        </when>
+      </award>
+    </answer>
+
+    <feedback condition="$q2big">
+      The mean of a data set can't be larger than the maximum value, which is 20.
+    </feedback>
+    <feedback condition="$q2small">
+      The mean of a data set can't be smaller than the minimum value, which is 4.
+    </feedback>
+    <feedback condition="$q2nonw">
+      It looks like you may have done a non-weighted mean, make sure you multiply
+      each of the data values <m>x</m>, by their corresponding frequency <m>f</m>,
+      and divide by the sum of the frequencies.
+    </feedback>
+    <feedback condition="$q2rnd">
+      It appears that you are doing the procedure correctly, but aren't following
+      the given rounding rules, which is to provide your answer to three decimal
+      places.
+    </feedback>
+
+    <hint hide="$q2.numSubmissions < 3">
+      To properly calculate a weighted mean, first multiply each value in the
+      row labeled <m>x</m>, by each value in the row labeled <m>f</m>. Then add these
+      values together.
+      <br/>
+      Next, add together all the frequencies, and divide your first sum by this
+      value.
+    </hint>
+    
+  </exercise>
+
+</cascade>
+
+<!-- VIDEO: PART 3 -- Population Means -->
+
+<section boxed="true" collapsible="true" startOpen="true" hide="!$question2comp">
+  <title>Lesson 1-4 Part 3 of 9</title>
+  <video name="v3" youtube="$v3link">
+    <shortDescription>Lesson 1-4 Part 3 of 9</shortDescription>
+  </video>
+  <p>
+    $studentName: Percent Viewed (1-4 Part 3) = <number>round($v3.fractionWatched * 100, 0)</number>%
+  </p>
+</section>
+
+<!-- QUESTIONS: PART 3 -->
+
+<cascade hide="!$video3comp">
+
+  <!-- QUESTION 3 --> 
+  
+  <exercise boxed="true" collapsible="true" startOpen="false">
+    <title>Question 3</title>
+
+    <p>
+      Calculate the mean of the following <alert>population</alert> of data:
+      <br/><br/>
+      1.5, 2.4, 3.8, 9.2, 1.6, 4.4
+      <br/><br/>
+      Round your answer to two decimal places.
+    </p>
+
+    <answer name="q3">
+      <mathInput name="q3ans">
+        <label>Population Mean = </label>
+      </mathInput>
+
+      <award credit="1"><when>abs($q3ans - 3.81667) < 0.01</when></award>
+      <award credit="0.5" name="q3rnd">
+        <when>abs($q3ans - 3.81667) < 0.1 or $q3ans = 4</when>
+      </award>
+      <award credit="0" name="q3big"><when>$q3ans > 9.2</when></award>
+      <award credit="0" name="q3small"><when>$q3ans < 1.5</when></award>
+    </answer>
+
+    <feedback condition="$q3big">
+      The average of a set of data can not be larger than the maximum
+      value.
+    </feedback>
+    <feedback condition="$q3small">
+      The average of a set of data can not be smaller than the minimum
+      value.
+    </feedback>
+    <feedback condition="$q3rnd">
+      Your answer is close, but make sure you are rounding properly.
+    </feedback>
+    
+    <hint hide="$q3.numSubmissions < 3">
+      To calculate a population mean, first add together all the data items.
+      <br/><br/>
+      <answer name="q3sum">
+        <mathInput name="q3sumans">
+          <label>What is the sum of the values?</label>
+        </mathInput>
+        <award><when>$q3sumans = 22.9</when></award>
+      </answer>
+      <p hide="!($q3sumans = 22.9)">Good job! That's the correct sum!</p>
+      <p hide="$q3sum.numSubmissions = 0 or !($q3sumans != 22.9)">That's not the correct sum, try again</p>
+      <p>    
+        Next, find out how many data items exist.
+      </p>
+      <answer name="q3nval">
+        <mathInput name="q3nvalans">
+          <label>How many values are in this data set?</label>
+        </mathInput>
+        <award><when>$q3nvalans = 6</when></award>
+      </answer>
+      <p hide="!($q3nvalans = 6)">Yes! There are six data items in the set.</p>
+      <p hide="$q3nval.numSubmissions = 0 or !($q3nvalans != 6)">No, that's not the right number of data items, try again</p>
+      <p>
+        Now just divide these two values to find the mean. Make sure
+        you round to the requested number of decimal places.
+      </p>
+    </hint>
+  
+  </exercise>
+
+  <cascadeMessage>
+    The next question will appear after the prior question is answered
+    correctly.
+  </cascadeMessage>
+
+  <!-- QUESTION 4 -->
+  
+  <exercise boxed="true" collapsible="true" startOpen="false">
+    <title>Question 4</title>
+
+    <answer name="q4">
+      <choiceInput shuffleOrder>
+        <label>What is true about the calculation of a population mean?</label>
+        <choice credit="1">The calculation of a population mean and sample mean is identical</choice>
+        <choice>
+          The population mean is calculated by dividing the sum of the data by one less than the
+          number of data items.
+        </choice>
+        <choice>
+          The population mean requires you to square each data item before adding the set 
+          together.
+        </choice>
+        <choice>
+          The population mean requires you to remove the largest and smallest data item before
+          adding together the values in the data set.
+        </choice>
+      </choiceInput>
+    </answer>
+    
+  </exercise>
+  
+</cascade>
+
+<!-- VIDEO: PART 4 -- Medians -->
+
+<section boxed="true" collapsible="true" startOpen="true" hide="!$question3comp">
+  <title>Lesson 1-4 Part 4 of 9</title>
+  <video name="v4" youtube="$v4link">
+    <shortDescription>Lesson 1-4 Part 4 of 9</shortDescription>
+  </video>
+  <p>
+    $studentName: Percent Viewed (1-4 Part 4) = <number>round($v4.fractionWatched * 100, 0)</number>%
+  </p>
+</section>
+
+<!-- QUESTIONS: PART 4 -->
+
+<cascade hide="!$video4comp">
+
+  <!-- QUESTION 5 --> 
+  
+  <exercise boxed="true" collapsible="true" startOpen="false">
+    <title>Question 5</title>
+
+    <p>
+      Find the median of the following data set:
+      <br/><br/>
+      25.2, 19.5, 11.4, 16.8, 21.1, 83.5, 10.6
+    </p>
+
+    <answer name="q5">
+      <mathInput name="q5ans">
+        <label>Median = </label>
+      </mathInput>
+      <award><when>$q5ans = 19.5</when></award>
+    </answer>
+
+    <hint hide="$q5.numSubmissions < 3">
+      To calculate the median, first sort all the data items,
+      then determine the value that sits in the middle. Since
+      there is an odd number of values, there should be only
+      one value in the center.
+    </hint>
+    
+  </exercise>
+
+  <cascadeMessage>
+    The next example will become available after the previous is answered 
+    correctly.
+  </cascadeMessage>
+  
+  <!-- QUESTION 6 --> 
+  
+  <exercise boxed="true" collapsible="true" startOpen="false">
+    <title>Question 6</title>
+
+    <p>
+      Find the median of the following data set:
+      <br/><br/>
+      18, 21, 16, 52, 25, 11, 9, 6
+    </p>
+
+    <answer name="q5">
+      <mathInput name="q5ans">
+        <label>Median = </label>
+      </mathInput>
+      <award><when>$q5ans = 17</when></award>
+    </answer>
+
+    <hint hide="$q5.numSubmissions < 3">
+      To calculate the median, first sort all the data items,
+      then determine the value that sits in the middle. Since
+      there is an even number of values, you will need to take
+      the average of the middle two values.
+    </hint>
+
+    
+  </exercise>
+
+  <cascadeMessage>
+    The next example will become available after the previous is answered 
+    correctly.
+  </cascadeMessage>
+  
+  <!-- QUESTION 7 --> 
+  
+  <exercise boxed="true" collapsible="true" startOpen="false">
+    <title>Question 7</title>
+
+    <p>
+      If the maximum value in a data set is replaced with a value that
+      is larger, what would be the effect on the median?
+    </p>
+    <answer name="q7">
+      <choiceInput name="q7c" shuffleOrder>
+        <choice>The new median would be smaller in value</choice>
+        <choice>The new median would be larger in value</choice>
+        <choice credit="1">The median would be unaffected</choice>
+        <choice>It would be impossible to determine</choice>
+      </choiceInput>
+    </answer>
+
+    <feedback condition="$q7.creditAchieved < 1">
+      If you replace the largest value in a data set with an even
+      larger value, this will have no effect on the median. This
+      is because the median is designed to be unaffected by outliers
+      and the largest (and smallest) values in a data set are the 
+      most likely to be outliers.
+    </feedback>
+    
+  </exercise>
+  
+</cascade>
+
+<!-- VIDEO: PART 5 -- Symmetry Example with Mean/Median -->
+
+<section boxed="true" collapsible="true" startOpen="true" hide="!$question4comp">
+  <title>Lesson 1-4 Part 5 of 9</title>
+  <video name="v5" youtube="$v5link">
+    <shortDescription>Lesson 1-4 Part 5 of 9</shortDescription>
+  </video>
+  <p>
+    $studentName: Percent Viewed (1-4 Part 5) = <number>round($v5.fractionWatched * 100, 0)</number>%
+  </p>
+</section>
+
+<!-- QUESTIONS: PART 5 -->
+
+<cascade hide="!$video5comp">
+
+  <!-- QUESTION 8 --> 
+  
+  <exercise boxed="true" collapsible="true" startOpen="false">
+    <title>Question 8</title>
+
+    <p>
+      The following scatter plot depicts a data set with a mean of 9.98. Without calculating, what is a good estimate for the median of the data set?
+    </p>
+
+    <chart type="scatter">
+      <shortDescription>dot plot of symmetric data</shortDescription>
+      <series x="6 6 7 7 7 8 8 8 8 8 9 9 9 9 9 9 9 9 9 9 10 10 10 10 10 10 10 10 10 10 10 11 11 11 11 11 11 11 11 11 12 12 12 12 12 13 13 13 13 14">1 2 1 2 3 1 2 3 4 5 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 11 1 2 3 4 5 6 7 8 9 1 2 3 4 5 1 2 3 4 1</series> 
+    </chart>
+
+    <answer name="q8">
+      <mathInput name="q8ans">
+        <label>Median = </label>
+      </mathInput>
+      <award><when>abs($q8ans - 9.98) < 0.5</when></award>
+    </answer>
+
+    <feedback condition="$q8.responseHasBeenSubmitted and $q8.creditAchieved < 1">
+      For a symmetric distribution, the mean and median are approximately
+      equal in value, so the best estimate for the value of the median is
+      the value of the median.
+    </feedback>
+    
+    
+  </exercise>
+
+</cascade>
+
+<!-- VIDEO: PART 6 -- Mode -->
+
+<section boxed="true" collapsible="true" startOpen="true" hide="!$question5comp">
+  <title>Lesson 1-4 Part 6 of 9</title>
+  <video name="v6" youtube="$v6link">
+    <shortDescription>Lesson 1-4 Part 6 of 9</shortDescription>
+  </video>
+  <p>
+    $studentName: Percent Viewed (1-4 Part 6) = <number>round($v6.fractionWatched * 100, 0)</number>%
+  </p>
+</section>
+
+<!-- QUESTIONS: PART 6 -->
+
+<cascade hide="!$video6comp">
+
+  <!-- QUESTION 9 --> 
+  
+  <exercise boxed="true" collapsible="true" startOpen="false">
+    <title>Question 9</title>
+
+    <p>
+      The power production for a particular region of the country
+      is summarized by category in the pie chart shown below. What
+      is the mode of the data?
+    </p>
+
+    <chart type="pie" 
+      categories="Wind Coal Solar" legend="false" displayValues>
+      <title>Power Production by Category</title>
+      <shortDescription>Power production by source</shortDescription>
+      40 35 25
+    </chart>
+
+    <answer name="q9" type="text">
+      <label>Mode = </label>
+      <award caseInsensitiveMatch>wind</award>
+      <award credit="0.5" name="q9quan">40</award>
+    </answer>
+
+    <feedback condition="$q9quan">
+      You are on the right track, but the mode isn't the largest amount,
+      but instead it's the category that has the largest amount.
+    </feedback>
+
+    <hint hide="$q9.numSubmissions < 3">
+      The mode is the <alert>category</alert> that has the highest frequency,
+      or in this case, the highest percentage.
+    </hint>
+    
+  </exercise>
+
+  <cascadeMessage>
+    The next question will become available after you answer the
+    previous question correctly.
+  </cascadeMessage>
+
+  <!-- Question 10 -->
+  
+  <exercise boxed="true" collapsible="true" startOpen="false">
+    <title>Question 10</title>
+
+    <p>
+      Identify the mode of the following data set:
+      <br/><br/>
+      9, 5, 6, 18, 12, 5, 11, 16, 12, 5, 10
+      <br/><br/>
+      If more than one mode exists, enter each of them separated by commas. If no
+      mode exists, type <em>dne</em> for "does not exist."
+    </p>
+
+    <answer name="q10">
+      <mathInput name="q10ans"></mathInput>
+      <label>Mode = </label>
+      <award><when>$q10ans = 5</when></award>
+      <award credit="0.25" name="q10wrong"><when>$q10ans = 12</when></award>
+    </answer>
+
+    <feedback condition="$q10wrong">
+      That value does appear more than once, but there is another value in
+      this set that appears with a higher frequency
+    </feedback>
+
+    <hint hide="$q10.numSubmissions < 3">
+      There is one single value in this data set that appears with a higher
+      frequency than the rest. 
+    </hint>
+    
+  </exercise>
+
+  <cascadeMessage>
+    The next question will become available after you answer the
+    previous question correctly.
+  </cascadeMessage>
+
+  <!-- Question 11 -->
+  
+  <exercise boxed="true" collapsible="true" startOpen="false">
+    <title>Question 11</title>
+
+    <p>
+      Identify the mode of the following data set:
+      <br/><br/>
+      16, 24, 19, 12, 51, 66, 84, 13
+      <br/><br/>
+      If more than one mode exists, enter each of them separated by commas. If no
+      mode exists, type <em>dne</em> for "does not exist."
+    </p>
+
+    <answer name="q11" type="text">
+      <label>Mode = </label>
+      <award caseInsensitiveMatch>dne</award>
+    </answer>
+
+    <hint hide="$q11.numSubmissions < 3">
+      None of the values appear more than any other, so there is no mode. 
+    </hint>
+    
+  </exercise>
+
+  <cascadeMessage>
+    The next question will become available after you answer the
+    previous question correctly.
+  </cascadeMessage>
+
+  <!-- Question 12 --> 
+  
+  <exercise boxed="true" collapsible="true" startOpen="false">
+    <title>Question 12</title>
+
+    <p>
+      Identify the mode of the following data set:
+      <br/><br/>
+      15, 9, 18, 10, 4, 18, 16, 5, 10, 9
+      <br/><br/>
+      If more than one mode exists, enter each of them separated by commas. If no
+      mode exists, type <em>dne</em> for "does not exist."
+    </p>
+
+    <answer name="q12" unorderedCompare>
+      <mathInput name="q12ans"></mathInput>
+      <label>Mode = </label>
+      <award><when>$q12ans = <mathList>9 18 10</mathList></when></award>
+    </answer>
+
+    <hint hide="$q12.numSubmissions < 3">
+      There are multiple values that appear with the highest frequency. To
+      answer this correctly, enter them as a list separated by commas.
+    </hint>
+    
+  </exercise>
+
+  
+</cascade>
+
+<!-- VIDEO: PART 7 -- Calculating mean, median, and mode with technology -->
+
+<section boxed="true" collapsible="true" startOpen="true" hide="!$question6comp">
+  <title>Lesson 1-4 Part 7 of 9</title>
+
+  <p>
+    You only need to watch one of the following video options in this section,
+    which demonstrate how to work examples using your class technology. Choose
+    the technology you are using and watch that version of the video.
+  </p>
+
+  <answer>
+    <choiceInput>
+      <label>Which technology are you using for the class?</label>
+      <choice credit="1" name="v7_playti">TI 83/84 or equivalent calculator</choice>
+      <choice credit="1" name="v7_playsc">Online Stats Calculator</choice>
+    </choiceInput>
+  </answer>
+
+  <video name="v7ti" youtube="$v7link_ti" hide="!$v7_playti">
+    <shortDescription>Lesson 1-4 Part 7 of 9</shortDescription>
+  </video>
+ <p hide="!$v7_playti">
+    $studentName: Percent Viewed (1-4 Part 7) = <number>round($v7ti.fractionWatched * 100, 0)</number>%
+  </p> 
+  
+  <video name="v7sc" youtube="$v7link_sc" hide="!$v7_playsc">
+    <shortDescription>Lesson 1-4 Part 7 of 9</shortDescription>
+  </video>
+  <p hide="!$v7_playsc">
+    $studentName: Percent Viewed (1-4 Part 7) = <number>round($v7sc.fractionWatched * 100, 0)</number>%
+  </p>
+
+</section>
+
+<!-- QUESTIONS: PART 7 -->
+
+<cascade hide="!$video7comp">
+
+  <!-- QUESTION 13 --> 
+  
+  <exercise boxed="true" collapsible="true" startOpen="false">
+    <title>Question 13</title>
+
+    <p>
+      Calculate the mean, and median of the following data set using
+      your chosen class technology.
+      <br/><br/>
+      Please note that the <em>expectation</em> for this class is that you are
+      using your technology to find the values of means, and medians. This is
+      faster, more accurate, and easier than doing them by formulas. AI often 
+      tells you how to do these by formula and not using the calculator functions,
+      which ironically is <em>more difficult</em> than what is expected in the
+      class. 
+      <br/><br/>
+      <alert>Please learn the use of 1-var stats</alert> as it will
+      greatly benefit you.
+      <br/><br/>
+      19.2, 15.1, 16.8, 11.4, 21.1, 59.6, 12.8, 16.4
+      <br/><br/>
+      Round your answers to two decimal places, if necessary.
+    </p>
+
+    <answer name="q13" colorInputsSeparately numAwardsCredited="2">
+      <mathInput name="q13mean" forAnswer="$q13">
+        <label>Mean = </label>
+      </mathInput>
+      
+      <mathInput name="q13median" forAnswer="$q13">
+        <label>Median = </label>
+      </mathInput>  
+      <award credit="0.5">
+        <when>abs($q13mean - 21.55) < 0.01</when>
+      </award>
+      <award credit="0.5">
+        <when>abs($q13median - 16.6) < 0.01</when>
+      </award>
+    </answer>
+
+    <hint hide="$q13.numSubmissions < 3">
+      To answer this, you should be using your chosen class technology
+      and the built-in function <alert>1-var stats</alert>. To do this,
+      enter your data into <em>L1</em> using your list editor, then run
+      the function <em>1-var stats</em>. Make sure you are not using a
+      FreqList in this example. 
+      <br/>
+      The output will contain <m>\bar{x}</m>, which will be the value of
+      your sample mean, and if you scroll down, you should also the the 
+      value of Med, which is your median.
+    </hint>
+    
+  </exercise>
+
+</cascade>
+
+<!-- VIDEO: PART 8 -- Weighted Mean -->
+
+<section boxed="true" collapsible="true" startOpen="true" hide="!$question7comp">
+  <title>Lesson 1-4 Part 8 of 9</title>
+
+  <p>
+    You only need to watch one of the following video options in this section,
+    which demonstrate how to work examples using your class technology. Choose
+    the technology you are using and watch that version of the video.
+  </p>
+
+  <answer>
+    <choiceInput>
+      <label>Which technology are you using for the class?</label>
+      <choice credit="1" name="v8_playti">TI 83/84 or equivalent calculator</choice>
+      <choice credit="1" name="v8_playsc">Online Stats Calculator</choice>
+    </choiceInput>
+  </answer>
+
+  <video name="v8ti" youtube="$v8link_ti" hide="!$v8_playti">
+    <shortDescription>Lesson 1-4 Part 8 of 9</shortDescription>
+  </video>
+ <p hide="!$v8_playti">
+    $studentName: Percent Viewed (1-4 Part 8) = <number>round($v8ti.fractionWatched * 100, 0)</number>%
+  </p> 
+  
+  <video name="v8sc" youtube="$v8link_sc" hide="!$v8_playsc">
+    <shortDescription>Lesson 1-4 Part 8 of 9</shortDescription>
+  </video>
+  <p hide="!$v8_playsc">
+    $studentName: Percent Viewed (1-4 Part 8) = <number>round($v8sc.fractionWatched * 100, 0)</number>%
+  </p>
+
+</section>
+
+
+<!-- QUESTIONS: PART 8 -->
+
+<cascade hide="!$video8comp">
+
+  <!-- QUESTION 14 --> 
+  
+  <exercise boxed="true" collapsible="true" startOpen="false">
+    <title>Question 14</title>
+
+    <p>
+      Calculate the weighted mean, and weighted median of the following
+      frequency distribution using your chosen class technology.
+      <br/><br/>
+      Please note that the <em>expectation</em> for this class that you are
+      using your technology to find the values of all weighted statistics. 
+      These are very time consuming to complete by formula, and very prone to
+      rounding errors. AI often tells you how to do these by formula and not using
+      the calculator functions, which ironically is <em>more difficult</em> than 
+      what is expected in the class. 
+      <br/><br/>
+      <alert>Please learn the use of 1-var stats</alert> as it will
+      greatly benefit you.
+    </p>
+    <table>
+      <title>Frequency Distribution</title>
+      <tabular startBorder="minor" endBorder="minor" 
+        topBorder="minor" bottomBorder="minor" width="60%" hAlign="center">
+        <row>
+          <cell><m>x</m></cell>
+          <cell>6</cell>
+          <cell>10</cell>
+          <cell>15</cell>
+          <cell>21</cell>
+          <cell>26</cell>
+        </row>
+        <row>
+          <cell><m>f</m></cell>
+          <cell>9</cell>
+          <cell>21</cell>
+          <cell>8</cell>
+          <cell>4</cell>
+          <cell>2</cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>
+      Round your answers to two decimal places, if necessary.
+    </p>
+      
+    <answer name="q14" colorInputsSeparately numAwardsCredited="2">
+      <mathInput name="q14mean" forAnswer="$q14">
+        <label>Mean = </label>
+      </mathInput>
+      
+      <mathInput name="q14median" forAnswer="$q14">
+        <label>Median = </label>
+      </mathInput>  
+      
+      <award credit="0.5">
+        <when>abs($q14mean - 11.818181) < 0.01</when>
+      </award>
+      <award credit="0.25" name="q14meanrnd">
+        <when>$q14mean = 12 or $q14mean = 11 or $q14mean = 11.8</when>
+      </award>
+      <award credit="0.25" name="q14meannw">
+        <when>abs($q14mean - 15.6) < 0.01</when>
+      </award>
+      
+      <award credit="0.5">
+        <when>abs($q14median - 10) < 0.01</when>
+      </award>
+      <award credit="0.25" name="q14mediannw">
+        <when>abs($q14median - 15) < 0.01</when>
+      </award>      
+    </answer>
+
+    <feedback condition="$q14meanrnd">
+      It appears that you have the correct value for the mean, but
+      are not rounding to the correct number of decimal places.
+    </feedback>
+    <feedback condition="$q14meannw">
+      It appears that you have found the mean using non-weighted
+      statistics. Make sure you are using the FreqList option as
+      <em>L2</em>, or using 1-var_stats(L1,L2) to indicate the 
+      use of weighted statistics.
+    </feedback>
+    <feedback condition="$q14mediannw">
+      It appears that you have found the median using non-weighted
+      statistics. Make sure you are using the FreqList option as
+      <em>L2</em>, or using 1-var_stats(L1,L2) to indicate the 
+      use of weighted statistics.      
+    </feedback>
+      
+    <hint hide="$q14.numSubmissions < 3">
+      To answer this, you should be using your chosen class technology
+      and the built-in function <alert>1-var stats</alert>. To do this,
+      enter the data in the row labeled <m>x</m> into <em>L1</em>, and 
+      the data in the row labeled <m>f</m> into <em>L2</em> using your 
+      list editor.
+      <br/><br/>
+      Next, run the function <em>1-var stats</em>, ensuring that you 
+      have <em>L1</em> designated as your "List", and <em>L2</em>
+      designated as your "FreqList." Or using 1-var_stats(L1,L2) on the
+      online Stats Calculator.
+      <br/><br/>
+      This will automatically handle the weighted calcualtions for you.
+      <br/><br/>
+      The output will contain <m>\bar{x}</m>, which will be the value of
+      your sample mean, and if you scroll down, you should also the the 
+      value of Med, which is your median.
+    </hint>
+    
+  </exercise>
+
+</cascade>
+
+<!-- VIDEO: PART 9 -- Calculating weighted mean from frequency distribution -->
+
+<section boxed="true" collapsible="true" startOpen="true" hide="!$question8comp">
+  <title>Lesson 1-4 Part 9 of 9</title>
+
+  <p>
+    You only need to watch one of the following video options in this section,
+    which demonstrate how to work examples using your class technology. Choose
+    the technology you are using and watch that version of the video.
+  </p>
+
+  <answer>
+    <choiceInput>
+      <label>Which technology are you using for the class?</label>
+      <choice credit="1" name="v9_playti">TI 83/84 or equivalent calculator</choice>
+      <choice credit="1" name="v9_playsc">Online Stats Calculator</choice>
+    </choiceInput>
+  </answer>
+
+  <video name="v9ti" youtube="$v9link_ti" hide="!$v9_playti">
+    <shortDescription>Lesson 1-4 Part 9 of 9</shortDescription>
+  </video>
+ <p hide="!$v9_playti">
+    $studentName: Percent Viewed (1-4 Part 9) = <number>round($v9ti.fractionWatched * 100, 0)</number>%
+  </p> 
+  
+  <video name="v9sc" youtube="$v9link_sc" hide="!$v9_playsc">
+    <shortDescription>Lesson 1-4 Part 9 of 9</shortDescription>
+  </video>
+  <p hide="!$v9_playsc">
+    $studentName: Percent Viewed (1-4 Part 9) = <number>round($v9sc.fractionWatched * 100, 0)</number>%
+  </p>
+
+</section>
+
+<!-- QUESTIONS: PART 9 -->
+
+<cascade hide="!$video9comp">
+
+  <!-- QUESTION 15 --> 
+  
+  <exercise boxed="true" collapsible="true" startOpen="false">
+    <title>Question 15</title>
+
+    <cascade>
+      
+    <p>
+      Calculate weighted mean of the following frequency distribution. First,
+      find the midpoints, and end them in the blanks. 
+    </p>
+
+    <table>
+      <title>Frequency Distribution</title>
+      <tabular halign="center" width="75%">
+        <row header>
+          <cell>Class Range</cell>
+          <cell>Midpoint</cell>
+          <cell>Frequency</cell>
+        </row>
+        <row>
+          <cell><m>15 - 22</m></cell>
+          <cell>
+            <mathInput name="q15c1" forAnswer="$q15mid">
+              <shortDescription>midpoint 1</shortDescription>
+            </mathInput> 
+          </cell>
+          <cell><m>9</m></cell>
+        </row>
+        <row>
+          <cell><m>23 - 30</m></cell>
+          <cell>
+            <mathInput name="q15c2" forAnswer="$q15mid">
+              <shortDescription>midpoint 2</shortDescription>
+            </mathInput> 
+          </cell>
+          <cell><m>17</m></cell>
+        </row>
+        <row>
+          <cell><m>31 - 38</m></cell>
+          <cell>
+            <mathInput name="q15c3" forAnswer="$q15mid">
+              <shortDescription>midpoint 3</shortDescription>
+            </mathInput> 
+          </cell>
+          <cell><m>8</m></cell>
+        </row>
+        <row>
+          <cell><m>39 - 46</m></cell>
+          <cell>
+            <mathInput name="q15c4" forAnswer="$q15mid">
+              <shortDescription>midpoint 4</shortDescription>
+            </mathInput> 
+          </cell>
+          <cell><m>3</m></cell>
+        </row>
+        <row>
+          <cell><m>47 - 54</m></cell>
+          <cell>
+            <mathInput name="q15c5" forAnswer="$q15mid">
+              <shortDescription>midpoint 5</shortDescription>
+            </mathInput> 
+          </cell>
+          <cell><m>2</m></cell>
+        </row>
+      </tabular>
+    </table>
+    
+    <answer name="q15mid" colorInputsSeparately numAwardsCredited="5">
+      <award credit="0.2"><when>$q15c1 = 18.5</when></award>
+      <award credit="0.2"><when>$q15c2 = 26.5</when></award>
+      <award credit="0.2"><when>$q15c3 = 34.5</when></award>
+      <award credit="0.2"><when>$q15c4 = 42.5</when></award>
+      <award credit="0.2"><when>$q15c5 = 50.5</when></award>
+    </answer>
+
+    <p>
+      Now, calculate the weighted mean of this distribution using
+      <alert>1-var_stats</alert> on your chosen technology.
+    </p>
+
+    <answer name="q15">
+      <mathInput name="q15mean">
+        <label>Weighted Mean = </label>
+      </mathInput>
+      <award><when>abs($q15mean - 28.7564) < 0.001</when></award>
+      <award credit="0.5" name="q15meanrnd">
+        <when>abs($q15mean - 28.7564) < 0.01</when>
+      </award>
+      <award credit="0.25" name="q15meannw">
+        <when>$q15mean = 34.5</when>
+      </award>
+    </answer>
+      
+    </cascade>
+
+    <hint hide="$q15mid.numSubmissions < 3">
+      To calculate midpoints, you take the average of the lower-
+      class limits and the upper-class limits. The formula is:
+      <me>
+        \text{midpoint}=\frac{\text{lower-class limit + upper-class limit}}{2}
+      </me>
+    </hint>
+
+    <feedback condition="$q15meanrnd">
+      Your answer is very close, but it looks like you might not be rounding
+      properly to the requested number of decimals. 
+    </feedback>
+    <feedback condition="$q15meannw">
+      Your answer is not accounting for the weights, so in effect, you have
+      calculated the average of the midpoints only. To inclue the weights,
+      make sure to indicate you have your frequencies in <em>L2</em> by 
+      putting that list in for the <em>FreqList</em> item in the TI
+      calculator, or in the online Stats Calculator, use the command
+      1-var_stats(L1,L2).
+    </feedback>
+
+    <hint hide="$q15.numSubmissions < 3">
+      To find a weighted mean, use your chosen class technology to 
+      enter midpoints into <em>L1</em>, and your frequencies into 
+      <em>L2</em> using your list editor.
+      <br/><br/>
+      Next, run the function <em>1-var stats</em>, ensuring that you 
+      have <em>L1</em> designated as your "List", and <em>L2</em>
+      designated as your "FreqList." Or using 1-var_stats(L1,L2) on the
+      online Stats Calculator.
+    </hint>
+    
+  </exercise>
+
+</cascade>
+
+<!-- COMPLETION SUMMARY -->
+
+<section boxed="true" hide="!$question9comp">
+  <title>
+    Lesson 1-4 Completion Summary 
+  </title>
+  <p>
+    Congratulations $studentName, you have completed lesson 1-4, and are ready to start the homework! 
+  </p>
+  <p>
+    Understanding the basic concepts of the different measures of central tendency
+    is vital to your success in statistics, congratulations for completing this
+    lesson!
+  </p>
+  <p>
+    Completion Summary: <br /><br />
+    1-4 Part 1: <number>round($v1.fractionWatched * 100, 0)</number>% <br />
+    1-4 Part 2: <number>round($v2.fractionWatched * 100, 0)</number>% <br />
+    1-4 Part 3: <number>round($v3.fractionWatched * 100, 0)</number>% <br />
+    1-4 Part 4: <number>round($v4.fractionWatched * 100, 0)</number>% <br />
+    1-4 Part 5: <number>round($v5.fractionWatched * 100, 0)</number>% <br />
+    1-4 Part 6: <number>round($v6.fractionWatched * 100, 0)</number>% <br />
+    1-4 Part 7: TI: <number valueOnNaN="0">round($v7ti.fractionWatched * 100, 0)</number>%, SC: <number valueOnNaN="0">round($v7sc.fractionWatched * 100, 0)</number>% <br />
+    1-4 Part 8: TI: <number valueOnNaN="0">round($v8ti.fractionWatched * 100, 0)</number>%, SC: <number valueOnNaN="0">round($v8sc.fractionWatched * 100, 0)</number>% <br />
+    1-4 Part 9: TI: <number valueOnNaN="0">round($v9ti.fractionWatched * 100, 0)</number>%, SC: <number valueOnNaN="0">round($v9sc.fractionWatched * 100, 0)</number>% <br />
+  </p>
+  <p>
+    Note: Only one of the TI / Stats Calculator option videos needs to be at 
+    100%, for full credit, not both.
+  </p>
+  <p>
+    To ensure your progress is recorded, take a screenshot of this completion summary section and keep it for your records. 
+  </p>
+  <p>
+    You are now ready to try the homework assignment for lesson 1-4 available in <ref to="https://www.xyzhomework.com">XYZ Homework</ref>.
+  </p>
+</section>
